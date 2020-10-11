@@ -1,0 +1,104 @@
+{% load static %}
+
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Singapore Polytechnic</title>
+    
+    <!-- ============================================================== -->
+    <!-- Header Scripts  -->
+    <!-- ============================================================== -->
+
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/media/web-defaults/spfav.ico">
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <!-- owl slider CSS -->
+    <link href="{% static 'assets/owl.carousel/owl.carousel.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/owl.carousel/owl.theme.default.css' %}" rel="stylesheet" />
+
+    <!-- ============================================================== -->
+    <!-- Custom CSS -->
+    <!-- ============================================================== -->
+	{% block page_style %}
+	{% endblock %}
+	<!-- ============================================================== -->
+    <!-- End Custom CSS  -->
+    <!-- ============================================================== -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    <!-- ============================================================== -->
+    <!-- End Header Scripts  -->
+    <!-- ============================================================== -->
+    </head>
+    
+	<body class="{{ page.body_class }}">
+
+	<!-- ============================================================== -->
+    <!-- Page Contents  -->
+    <!-- ============================================================== -->
+	{% block content %}
+	{% endblock %}
+	<!-- ============================================================== -->
+    <!-- End Page Contents  -->
+    <!-- ============================================================== -->
+
+	<!-- ============================================================== -->
+    <!-- Modal Contents  -->
+    <!-- ============================================================== -->
+	{% block modals %}
+	{% endblock %}
+	<!-- ============================================================== -->
+    <!-- End Modal Contents  -->
+    <!-- ============================================================== -->
+            
+    <!-- ============================================================== -->
+    <!-- Default Java Scripts  -->
+    <!-- ============================================================== -->
+
+    <script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %}"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="{% static 'assets/libs/popper.js/dist/umd/popper.min.js' %}"></script>
+    <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <!-- apps -->
+    <script src="{% static 'app/js/app.min.js' %}"></script>
+    <script src="{% static 'app/js/app.init.js' %}"></script>
+    <script src="{% static 'app/js/app-style-switcher.js' %}"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="{% static 'assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js' %}"></script>
+    <script src="{% static 'assets/extra-libs/sparkline/sparkline.js' %}"></script>
+
+    <script src="{% static 'app/js/sidebarmenu.js' %}"></script>
+    <script src="{% static 'app/js/custom.min.js' %}"></script>
+    <script src="{% static 'assets/libs/magnific-popup/dist/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'assets/libs/magnific-popup/meg.init.js' %}"></script>
+    
+    <!--Wave Effects -->
+    <script src="{% static 'app/js/pages/landing/waves.js' %}"></script>
+    <!--stickey kit -->
+    <script src="{% static 'app/js/pages/landing/sticky-kit.min.js' %}"></script>
+
+    <!-- ============================================================== -->
+    <!-- End Default Java Scripts  -->
+    <!-- ============================================================== -->
+
+	<!-- ============================================================== -->
+    <!-- Page Java Scripts  -->
+    <!-- ============================================================== -->
+	{% block page_scripts %}
+	{% endblock %}
+	<!-- ============================================================== -->
+    <!-- End Page Java Scripts  -->
+    <!-- ============================================================== -->
+	</body>
+</html>  
+
