@@ -1,0 +1,36 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+
+{% block branding %}
+  <h1 id="head">
+    <div class="navbar-header">
+      <a id="mobile_btn" href="javascript:void(0);">
+        <span class="bar-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </a>
+      <a href="{% url 'index' %}" class="navbar-brand logo">
+        <img src="/media/web-defaults/sp-logo-dark.png" class="img-fluid" alt="Logo"> Administration
+      </a>
+    </div>
+
+  </h1>
+{% endblock %}
+
+{% block extrastyle %}
+  <style>
+    #header {
+      width: auto;
+      height: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 40px;
+      background: #2f3d4a;
+      color: #ffc;
+      overflow: hidden;
+    }
+  </style>
+{% endblock %}
