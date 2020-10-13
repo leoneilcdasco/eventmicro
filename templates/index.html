@@ -21,7 +21,6 @@
       padding: 0 10px !important;
       margin: 0 15px !important;
   }
-
   </style>
 {% endblock %}
 
@@ -91,388 +90,40 @@
               </div>
             </div>
 
+
+            {% for month_event in event_list %}
             <hr>
-            <p class="text-info">OCTOBER 2020</p>
-
+            <p class="text-info">{{ month_event.month|date:'F Y'|upper }}</p>
             <!-- ROW Cards -->
             <div class="row">
+                {% for event in month_event.events%}
                 <div class="col-md-3 mb-4">
                     <div class="card text-white">
-                        <img class="card-img" src="/media/events/ted-tour.jpg" alt="Card image">
+                        <img class="card-img" src="/media/{{ event.photo }}" alt="Card image">
                         <div class="card-img-overlay text-white">
                             <div class="d-flex no-block align-items-center">
-                                <h5 class="font-weight-medium text-white">WEDNESDAY 1.8.2020</h5>
+                                <h5 class="font-weight-medium text-white">{{ event.event_date|date:'M d, Y l P'|upper}}</h5>
                                 <div class="ml-auto">
                                     <span><i class="ti-calendar"></i></span>
                                 </div>
                             </div>
                             <div class="d-inline-block ml-3">
-                                <span class="font-24"><a href="#" class="text-warning">Mike and Sarah</a></span>
+                                <span class="font-24"><a href="#" class="text-warning">{{ event.tagline }}</a></span>
                             </div>
                             <div class="d-inline-block ml-3">
-                                <span class="font-18">Water wars: How conflicts over resources are set to rise amid climate change.</span>
+                                <span class="font-18">{{ event.details }}</span>
                             </div>
                         </div>    
 
-                        <button class="btn btn-danger waves-effect waves-light mt-1" data-toggle="modal"
-                            data-target="#multiple-one">REGISTER FOR THIS WEBINAR</button> 
+                        <button class="btn btn-danger waves-effect waves-light mt-1 webinar_btn" data-toggle="modal" data-event-id="{{ event.id }}"
+                            data-target="#reg-dialog">REGISTER FOR THIS WEBINAR</button> 
 
                     </div>
                 </div>
-
-                <div class="col-md-3 mb-4">
-                    <div class="card text-white">
-                        <img class="card-img" src="/media/events/ted-tour.jpg " alt="Card image">
-                        <div class="card-img-overlay text-white">
-                            <div class="d-flex no-block align-items-center">
-                                <h5 class="font-weight-medium text-white">FRIDAY 10.8.2020</h5>
-                                <div class="ml-auto">
-                                    <span><i class="ti-calendar"></i></span>
-                                </div>
-                            </div>
-                            <div class="d-inline-block ml-3">
-                                <span class="font-24"><a href="#" class="text-warning">Dr. Simone Gapp</a></span>
-                            </div>
-                            <div class="d-inline-block ml-3">
-                                <span class="font-18">You Don't Find Happiness, You Create It. </span>
-                            </div>
-                        </div>
-                        <button class="btn btn-danger waves-effect waves-light mt-1" data-toggle="modal"
-                                 data-target="#multiple-one">REGISTER FOR THIS WEBINAR</button> 
-                    </div>
-                </div>
-
-                <div class="col-md-3 mb-4">
-                  <div class="card text-white">
-                      <img class="card-img" src="/media/events/ted-tour.jpg " alt="Card image">
-                      <div class="card-img-overlay text-white">
-                          <div class="d-flex no-block align-items-center">
-                              <h5 class="font-weight-medium text-white">FRIDAY 10.8.2020</h5>
-                              <div class="ml-auto">
-                                  <span><i class="ti-calendar"></i></span>
-                              </div>
-                          </div>
-                          <div class="d-inline-block ml-3">
-                              <span class="font-24"><a href="#" class="text-warning">Dr. Simone Gapp</a></span>
-                          </div>
-                          <div class="d-inline-block ml-3">
-                              <span class="font-18">You Don't Find Happiness, You Create It. </span>
-                          </div>
-                      </div>
-                      <button class="btn btn-danger waves-effect waves-light mt-1" data-toggle="modal"
-                             data-target="#multiple-one">REGISTER FOR THIS WEBINAR</button> 
-                  </div>
-                </div>
-
-                <div class="col-md-3 mb-4">
-                  <div class="card text-white">
-                      <img class="card-img" src="/media/events/ted-tour.jpg" alt="Card image">
-                      <div class="card-img-overlay text-white">
-                          <div class="d-flex no-block align-items-center">
-                              <h5 class="font-weight-medium text-white">WEDNESDAY 1.8.2020</h5>
-                              <div class="ml-auto">
-                                  <span><i class="ti-calendar"></i></span>
-                              </div>
-                          </div>
-                          <div class="d-inline-block ml-3">
-                              <span class="font-24"><a href="#" class="text-warning">Mike and Sarah</a></span>
-                          </div>
-                          <div class="d-inline-block ml-3">
-                              <span class="font-18">Water wars: How conflicts over resources are set to rise amid climate change.</span>
-                          </div>
-                      </div>
-                      <button class="btn btn-danger waves-effect waves-light mt-1" data-toggle="modal"
-                            data-target="#multiple-one">REGISTER FOR THIS WEBINAR</button> 
-                  </div>
-              </div>
-
+                {% endfor %}
             </div>
             <!-- /ROW Cards -->
-
-            <!-- ROW Cards -->
-            <div class="row">
-                <div class="col-md-3 mb-4">
-                    <div class="card text-white">
-                        <img class="card-img" src="/media/events/ted-tour.jpg" alt="Card image">
-                        <div class="card-img-overlay text-white">
-                            <div class="d-flex no-block align-items-center">
-                                <h5 class="font-weight-medium text-white">WEDNESDAY 1.8.2020</h5>
-                                <div class="ml-auto">
-                                    <span><i class="ti-calendar"></i></span>
-                                </div>
-                            </div>
-                            <div class="d-inline-block ml-3">
-                                <span class="font-24"><a href="#" class="text-warning">Mike and Sarah</a></span>
-                            </div>
-                            <div class="d-inline-block ml-3">
-                                <span class="font-18">Water wars: How conflicts over resources are set to rise amid climate change.</span>
-                            </div>
-                        </div>    
-                        <button class="btn btn-danger waves-effect waves-light mt-1" data-toggle="modal"
-                            data-target="#multiple-one">REGISTER FOR THIS WEBINAR</button> 
-                    </div>
-                </div>
-
-                <div class="col-md-3 mb-4">
-                    <div class="card text-white">
-                        <img class="card-img" src="/media/events/ted-tour.jpg " alt="Card image">
-                        <div class="card-img-overlay text-white">
-                            <div class="d-flex no-block align-items-center">
-                                <h5 class="font-weight-medium text-white">FRIDAY 10.8.2020</h5>
-                                <div class="ml-auto">
-                                    <span><i class="ti-calendar"></i></span>
-                                </div>
-                            </div>
-                            <div class="d-inline-block ml-3">
-                                <span class="font-24"><a href="#" class="text-warning">Dr. Simone Gapp</a></span>
-                            </div>
-                            <div class="d-inline-block ml-3">
-                                <span class="font-18">You Don't Find Happiness, You Create It. </span>
-                            </div>
-                        </div>
-                        <button class="btn btn-danger waves-effect waves-light mt-1" data-toggle="modal"
-                            data-target="#multiple-one">REGISTER FOR THIS WEBINAR</button> 
-                    </div>
-                </div>
-
-                <div class="col-md-3 mb-4">
-                  <div class="card text-white">
-                      <img class="card-img" src="/media/events/ted-tour.jpg " alt="Card image">
-                      <div class="card-img-overlay text-white">
-                          <div class="d-flex no-block align-items-center">
-                              <h5 class="font-weight-medium text-white">FRIDAY 10.8.2020</h5>
-                              <div class="ml-auto">
-                                  <span><i class="ti-calendar"></i></span>
-                              </div>
-                          </div>
-                          <div class="d-inline-block ml-3">
-                              <span class="font-24"><a href="#" class="text-warning">Dr. Simone Gapp</a></span>
-                          </div>
-                          <div class="d-inline-block ml-3">
-                              <span class="font-18">You Don't Find Happiness, You Create It. </span>
-                          </div>
-                      </div>
-                      <button class="btn btn-danger waves-effect waves-light mt-1" data-toggle="modal"
-                            data-target="#multiple-one">REGISTER FOR THIS WEBINAR</button> 
-                  </div>
-                </div>
-
-                <div class="col-md-3 mb-4">
-                  <div class="card text-white">
-                      <img class="card-img" src="/media/events/ted-tour.jpg" alt="Card image">
-                      <div class="card-img-overlay text-white">
-                          <div class="d-flex no-block align-items-center">
-                              <h5 class="font-weight-medium text-white">WEDNESDAY 1.8.2020</h5>
-                              <div class="ml-auto">
-                                  <span><i class="ti-calendar"></i></span>
-                              </div>
-                          </div>
-                          <div class="d-inline-block ml-3">
-                              <span class="font-24"><a href="#" class="text-warning">Mike and Sarah</a></span>
-                          </div>
-                          <div class="d-inline-block ml-3">
-                              <span class="font-18">Water wars: How conflicts over resources are set to rise amid climate change.</span>
-                          </div>
-                      </div>
-                      <button class="btn btn-danger waves-effect waves-light mt-1" data-toggle="modal"
-                         data-target="#multiple-one">REGISTER FOR THIS WEBINAR</button> 
-                  </div>
-              </div>
-
-            </div>
-            <!-- /ROW Cards -->
-
-            <hr>
-            <p class="text-info">NOVEMBER 2020</p>
-
-            <!-- ROW Cards -->
-            <div class="row">
-                <div class="col-md-3 mb-4">
-                    <div class="card text-white">
-                        <img class="card-img" src="/media/events/ted-tour.jpg" alt="Card image">
-                        <div class="card-img-overlay text-white">
-                            <div class="d-flex no-block align-items-center">
-                                <h5 class="font-weight-medium text-white">WEDNESDAY 1.8.2020</h5>
-                                <div class="ml-auto">
-                                    <span><i class="ti-calendar"></i></span>
-                                </div>
-                            </div>
-                            <div class="d-inline-block ml-3">
-                                <span class="font-24"><a href="#" class="text-warning">Mike and Sarah</a></span>
-                            </div>
-                            <div class="d-inline-block ml-3">
-                                <span class="font-18">Water wars: How conflicts over resources are set to rise amid climate change.</span>
-                            </div>
-                        </div>    
-
-                        <button class="btn btn-danger waves-effect waves-light mt-1" data-toggle="modal"
-                            data-target="#multiple-one">REGISTER FOR THIS WEBINAR</button> 
-
-                    </div>
-                </div>
-
-                <div class="col-md-3 mb-4">
-                    <div class="card text-white">
-                        <img class="card-img" src="/media/events/ted-tour.jpg " alt="Card image">
-                        <div class="card-img-overlay text-white">
-                            <div class="d-flex no-block align-items-center">
-                                <h5 class="font-weight-medium text-white">FRIDAY 10.8.2020</h5>
-                                <div class="ml-auto">
-                                    <span><i class="ti-calendar"></i></span>
-                                </div>
-                            </div>
-                            <div class="d-inline-block ml-3">
-                                <span class="font-24"><a href="#" class="text-warning">Dr. Simone Gapp</a></span>
-                            </div>
-                            <div class="d-inline-block ml-3">
-                                <span class="font-18">You Don't Find Happiness, You Create It. </span>
-                            </div>
-                        </div>
-                        <button class="btn btn-danger waves-effect waves-light mt-1" data-toggle="modal"
-                                data-target="#multiple-one">REGISTER FOR THIS WEBINAR</button> 
-                    </div>
-                </div>
-
-                <div class="col-md-3 mb-4">
-                  <div class="card text-white">
-                      <img class="card-img" src="/media/events/ted-tour.jpg " alt="Card image">
-                      <div class="card-img-overlay text-white">
-                          <div class="d-flex no-block align-items-center">
-                              <h5 class="font-weight-medium text-white">FRIDAY 10.8.2020</h5>
-                              <div class="ml-auto">
-                                  <span><i class="ti-calendar"></i></span>
-                              </div>
-                          </div>
-                          <div class="d-inline-block ml-3">
-                              <span class="font-24"><a href="#" class="text-warning">Dr. Simone Gapp</a></span>
-                          </div>
-                          <div class="d-inline-block ml-3">
-                              <span class="font-18">You Don't Find Happiness, You Create It. </span>
-                          </div>
-                      </div>
-                      <button class="btn btn-danger waves-effect waves-light mt-1" data-toggle="modal"
-                             data-target="#multiple-one">REGISTER FOR THIS WEBINAR</button> 
-                  </div>
-                </div>
-
-                <div class="col-md-3 mb-4">
-                  <div class="card text-white">
-                      <img class="card-img" src="/media/events/ted-tour.jpg" alt="Card image">
-                      <div class="card-img-overlay text-white">
-                          <div class="d-flex no-block align-items-center">
-                              <h5 class="font-weight-medium text-white">WEDNESDAY 1.8.2020</h5>
-                              <div class="ml-auto">
-                                  <span><i class="ti-calendar"></i></span>
-                              </div>
-                          </div>
-                          <div class="d-inline-block ml-3">
-                              <span class="font-24"><a href="#" class="text-warning">Mike and Sarah</a></span>
-                          </div>
-                          <div class="d-inline-block ml-3">
-                              <span class="font-18">Water wars: How conflicts over resources are set to rise amid climate change.</span>
-                          </div>
-                      </div>
-                      <button class="btn btn-danger waves-effect waves-light mt-1" data-toggle="modal"
-                          data-target="#multiple-one">REGISTER FOR THIS WEBINAR</button> 
-                  </div>
-              </div>
-
-            </div>
-            <!-- /ROW Cards -->
-
-            <!-- ROW Cards -->
-            <div class="row">
-                <div class="col-md-3 mb-4">
-                    <div class="card text-white">
-                        <img class="card-img" src="/media/events/ted-tour.jpg" alt="Card image">
-                        <div class="card-img-overlay text-white">
-                            <div class="d-flex no-block align-items-center">
-                                <h5 class="font-weight-medium text-white">WEDNESDAY 1.8.2020</h5>
-                                <div class="ml-auto">
-                                    <span><i class="ti-calendar"></i></span>
-                                </div>
-                            </div>
-                            <div class="d-inline-block ml-3">
-                                <span class="font-24"><a href="#" class="text-warning">Mike and Sarah</a></span>
-                            </div>
-                            <div class="d-inline-block ml-3">
-                                <span class="font-18">Water wars: How conflicts over resources are set to rise amid climate change.</span>
-                            </div>
-                        </div>    
-                        <button class="btn btn-danger waves-effect waves-light mt-1" data-toggle="modal"
-                            data-target="#multiple-one">REGISTER FOR THIS WEBINAR</button>  
-                    </div>
-                </div>
-
-                <div class="col-md-3 mb-4">
-                    <div class="card text-white">
-                        <img class="card-img" src="/media/events/ted-tour.jpg " alt="Card image">
-                        <div class="card-img-overlay text-white">
-                            <div class="d-flex no-block align-items-center">
-                                <h5 class="font-weight-medium text-white">FRIDAY 10.8.2020</h5>
-                                <div class="ml-auto">
-                                    <span><i class="ti-calendar"></i></span>
-                                </div>
-                            </div>
-                            <div class="d-inline-block ml-3">
-                                <span class="font-24"><a href="#" class="text-warning">Dr. Simone Gapp</a></span>
-                            </div>
-                            <div class="d-inline-block ml-3">
-                                <span class="font-18">You Don't Find Happiness, You Create It. </span>
-                            </div>
-                        </div>
-                        <button class="btn btn-danger waves-effect waves-light mt-1" data-toggle="modal"
-                            data-target="#multiple-one">REGISTER FOR THIS WEBINAR</button> 
-                    </div>
-                </div>
-
-                <div class="col-md-3 mb-4">
-                  <div class="card text-white">
-                      <img class="card-img" src="/media/events/ted-tour.jpg " alt="Card image">
-                      <div class="card-img-overlay text-white">
-                          <div class="d-flex no-block align-items-center">
-                              <h5 class="font-weight-medium text-white">FRIDAY 10.8.2020</h5>
-                              <div class="ml-auto">
-                                  <span><i class="ti-calendar"></i></span>
-                              </div>
-                          </div>
-                          <div class="d-inline-block ml-3">
-                              <span class="font-24"><a href="#" class="text-warning">Dr. Simone Gapp</a></span>
-                          </div>
-                          <div class="d-inline-block ml-3">
-                              <span class="font-18">You Don't Find Happiness, You Create It. </span>
-                          </div>
-                      </div>
-                      <button class="btn btn-danger waves-effect waves-light mt-1" data-toggle="modal"
-                        data-target="#multiple-one"> REGISTER FOR THIS WEBINAR</button> 
-                  </div>
-                </div>
-
-                <div class="col-md-3 mb-4">
-                  <div class="card text-white">
-                      <img class="card-img" src="/media/events/ted-tour.jpg" alt="Card image">
-                      <div class="card-img-overlay text-white">
-                          <div class="d-flex no-block align-items-center">
-                              <h5 class="font-weight-medium text-white">WEDNESDAY 1.8.2020</h5>
-                              <div class="ml-auto">
-                                  <span><i class="ti-calendar"></i></span>
-                              </div>
-                          </div>
-                          <div class="d-inline-block ml-3">
-                              <span class="font-24"><a href="#" class="text-warning">Mike and Sarah</a></span>
-                          </div>
-                          <div class="d-inline-block ml-3">
-                              <span class="font-18">Water wars: How conflicts over resources are set to rise amid climate change.</span>
-                          </div>
-                      </div>
-                      <button class="btn btn-danger waves-effect waves-light mt-1" data-toggle="modal"
-                        data-target="#multiple-one"> REGISTER FOR THIS WEBINAR</button> 
-                  </div>
-              </div>
-
-            </div>
-            <!-- /ROW Cards -->
-
+            {% endfor %}
         </div>
         <!-- ============================================================== -->
         <!-- End Page Content -->
@@ -481,7 +132,7 @@
         <!-- ============================================================== -->
         <!-- Start Modal Content -->
         <!-- ============================================================== -->
-        <div id="multiple-one" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="multiple-oneModalLabel" aria-hidden="true">
+        <div id="reg-dialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="multiple-oneModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -495,9 +146,9 @@
                             <div class="card border-0">
                                 <div class="card-body">
                                     <h5 class="card-title">You will receive a link to the webinar via email. <code><small>(* - Required Field)</small></code></h5>
-                                    <form class="form">
+                                    <form class="form" id="reg_form">
                                         {% csrf_token %}
-                                        <input type="hidden" name="event_id" value="">
+                                        <input type="hidden" id="event_id" name="event_id" value="12334">
                                         <div class="form-group mt-4 row">
                                             <label for="example-text-input" class="col-md-2 col-form-label">First Name <small class="text-danger">*</small>:</label>
                                             <div class="col-md-10">
@@ -547,7 +198,7 @@
                                         <div class="form-group row">
                                             <label for="example-tel-input" class="col-md-2 col-form-label">Other courses you're interested in:</label>
                                             <div class="col-md-10">
-                                                <textarea class="form-control" rows="5" name="other" value="{{ values.others }}"></textarea>
+                                                <textarea class="form-control" rows="5" name="others" value="{{ values.others }}"></textarea>
                                             </div>
                                         </div>
 
@@ -558,16 +209,14 @@
                     </div>
          
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger"
-                            data-target="#multiple-two" data-toggle="modal"
-                            data-dismiss="modal">REGISTER</button>
+                        <button class="btn btn-danger" id="register_btn">REGISTER</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
 
         <!-- Modal -->
-        <div id="multiple-two" class="modal fade" tabindex="-1" role="dialog"
+        <div id="success-dialog" class="modal fade" tabindex="-1" role="dialog"
             aria-labelledby="multiple-twoModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -626,5 +275,98 @@
     <!-- jQuery for carousel -->
     <script src="{% static 'assets/owl.carousel/owl.carousel.min.js' %}"></script>
     <!--Custom JavaScript MOVE IT -->
-    <script src="{% static 'app/js/pages/landing/custom.min.js' %}"></script>
+    <script src="{% static 'app/js/custom.js' %}"></script>
+
+
+    <script>
+        (function($) {
+
+            // ==============================================================
+            // SET target event id
+            // ==============================================================
+            $(document).on('click', '.webinar_btn', function (e) {
+                var event_id = $(this).data('event-id');
+                $('#event_id').val(event_id);
+            });
+
+            // ==============================================================
+            // Check if string is empty
+            // ==============================================================
+            function isEmpty(str) {
+                return str == null || !str.trim().length;
+            }
+
+            // ==============================================================
+            // Validates User input
+            // ==============================================================            
+            function check_input(){
+                var value = $("[name='first_name']").val();
+                if (isEmpty(value)) return false;
+
+                var value = $("[name='last_name']").val();
+                if (isEmpty(value)) return false;
+
+                var email = $("[name='email']").val();
+                if (isEmpty(email)) return false;
+
+                var email2 = $("[name='email_verify']").val();
+                if (isEmpty(email2)) return false;
+
+                var value = $("[name='phone']").val();
+                if (isEmpty(value)) return false;
+
+                var value = $("[name='dob']").val();
+                if (isEmpty(value)) return false;
+
+                if (email !== email2) return false;
+                return true;
+            }
+
+            // ==============================================================
+            // Reset input form
+            // ==============================================================    
+            $('#reg-dialog').on('show.bs.modal', function (e) {
+                $('#reg_form')[0].reset();
+            })
+           
+            // ==============================================================
+            // POST registration dialog 
+            // ==============================================================
+            $(document).on('click', '#register_btn', function (e) {
+                e.stopPropagation()
+
+                formData = $('#reg_form').serializeArray();
+
+                if (!check_input()) {
+                    alert('Please provide all required fields or valid input!')
+                    return false;
+                }
+                
+                var has_error = false;
+                $.ajax({
+                    type: 'POST',
+                    url: '/register',
+                    async: false,
+                    data: formData,
+                    sucess: function(data){
+                        console.log('Success >>> ' + data)
+                    },
+                    error: function(data){
+                        has_error = true;
+                        console.log('Error >>> ' + data)
+                        alert('Registration failed, please contact system admin!');
+                    },
+                    complete: function(data){
+                        // Show FINISH dialog here
+                        if (!has_error) {
+                           $('#reg-dialog').modal('hide');
+                           $('#success-dialog').modal('show');
+                        } 
+                    }	
+                  });
+            });
+        
+        })(jQuery);
+    </script>
+
 {% endblock %}

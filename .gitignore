@@ -26,8 +26,6 @@ develop-eggs/
 downloads/
 eggs/
 .eggs/
-libs/
-lib64/
 parts/
 sdist/
 var/

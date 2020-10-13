@@ -11,16 +11,18 @@ GENDER_CHOICES = (
     ('F', 'Female')
 )
 
-def profile_upload_path(instance, filename):
-    # file will be uploaded to MEDIA_ROOT/uploads/profile_<id>/<filename>
-    return 'uploads/profile_{0}/{1}'.format(instance.id, filename)
+def event_upload_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/uploads/event_<id>/<filename>
+    return 'uploads/event_{0}/{1}'.format(instance.id, filename)
 
 class Event(models.Model):
     name = models.CharField(max_length=250)
+    photo      = models.ImageField(upload_to=event_upload_path, default='web-defaults/placeholder.png')
     event_date = models.DateTimeField(default=datetime.now)
     organizer  = models.CharField(max_length=250, blank=True)
     tagline    = models.CharField(max_length=512)
     details    = models.TextField(blank=True)
+    invitation = models.TextField(blank=True)
 
     def __str__(self):
         return self.name
