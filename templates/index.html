@@ -154,44 +154,43 @@
                                         {% csrf_token %}
                                         <input type="hidden" id="event_id" name="event_id" value="12334">
                                         <div class="form-group mt-4 row">
-                                            <label for="example-text-input" class="col-md-2 col-form-label">First Name <small class="text-danger">*</small>:</label>
-                                            <div class="col-md-10">
-                                                <input class="form-control" type="text" name="first_name" value="{{ values.first_name }}" id="example-text-input">
-                                            </div>
-                                        </div>
-                                        <div class="form-group mt-4 row">
-                                            <label for="example-text-input" class="col-md-2 col-form-label">Last Name <small class="text-danger">*</small>:</label>
-                                            <div class="col-md-10">
-                                                <input class="form-control" type="text" name="last_name" value="{{ values.last_name }}" id="example-text-input">
+                                            <label for="example-text-input" class="col-md-3 col-form-label">Name of Prospective Student <small class="text-danger">*</small>:</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" placeholder="FirstName MI LastName" type="text" name="first_name" value="{{ values.first_name }}" id="example-text-input">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="example-email-input" class="col-md-2 col-form-label">Email <small class="text-danger">*</small>:</label>
-                                            <div class="col-md-10">
-                                                <input class="form-control" type="email" name="email" value="{{ values.email }}">
+                                            <label for="example-email-input" class="col-md-3 col-form-label">Email <small class="text-danger">*</small>:</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" placeholder="email@domain.com" type="email" name="email" value="{{ values.email }}">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="example-email-input" class="col-md-2 col-form-label">Verify Email:</label>
-                                            <div class="col-md-10">
-                                                <input class="form-control" type="email" name="email_verify" value="">
+                                            <label for="example-email-input" class="col-md-3 col-form-label">Verify Email:</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" placeholder="email@domain.com" type="email" name="email_verify" value="">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="example-tel-input" class="col-md-2 col-form-label">Tel. No.:<small class="text-danger">*</small></label>
-                                            <div class="col-md-10">
-                                                <input class="form-control" type="text" name="phone" value="{{ values.phone }}">
+                                            <label for="example-tel-input" class="col-md-3 col-form-label">Tel. No.:<small class="text-danger">*</small></label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" type="text" placeholder="+639993332211" name="phone" value="{{ values.phone }}">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="example-tel-input" class="col-md-2 col-form-label">DOB<small class="text-danger">*</small>:</label>
-                                            <div class="col-md-10">
-                                                <input class="form-control" type="text" name="dob" value="{{ values.dob }}">
+                                            <label for="example-tel-input" class="col-md-3 col-form-label">DOB<small class="text-danger">*</small>:</label>
+                                            <div class="col-md-9">
+                                                <div class="input-group">
+                                                <input class="form-control" type="text" placeholder="MM/DD/YYYY" id="mdate" name="dob" value="{{ values.dob }}">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text"><i class="icon-calender"></i></span>
+                                                </div> 
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="example-month-input" class="col-md-2 col-form-label">Gender:</label>
-                                            <div class="col-md-10">
+                                            <label for="example-month-input" class="col-md-3 col-form-label">Gender:</label>
+                                            <div class="col-md-9">
                                                 <select class="custom-select col-12" id="inlineFormCustomSelect" name="gender">
                                                     <option value="-">-</option>
                                                     <option value="M">Male</option>
@@ -200,12 +199,85 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="example-tel-input" class="col-md-2 col-form-label">Other courses you're interested in:</label>
-                                            <div class="col-md-10">
+                                            <label for="example-month-input" class="col-md-3 col-form-label">Type of Participant:</label>
+                                            <div class="col-md-9">
+                                                <select class="custom-select col-12" id="inlineFormCustomSelect" name="TypeOfParticipant">
+                                                    <option value="-">-</option>
+                                                    <option value="Parent">Parent</option>
+                                                    <option value="OLevelSchoolLeaver">O Level School Leaver</option>
+                                                    <option value="NLevelSchoolLeaver">N Level School Leaver</option>
+                                                    <option value="ITEGraduateStudent">ITE Graduate/Student</option>
+                                                    <option value="SecondarySchool">Secondary School Student (Level), School Teacher/Educator</option>
+                                                    <option value="Others">Others</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="example-tel-input" class="col-md-3 col-form-label">Fill this if "Others" was selected above <small class="text-danger">*</small>:</label>
+                                            <div class="col-md-9">
                                                 <textarea class="form-control" rows="5" name="others" value="{{ values.others }}"></textarea>
                                             </div>
                                         </div>
-
+                                        <div class="form-group row">
+                                            <label for="example-month-input" class="col-md-3 col-form-label">Number of Attendees:</label>
+                                            <div class="col-md-9">
+                                                <select class="custom-select col-12" id="inlineFormCustomSelect" name="NumberOfAttendees">
+                                                    <option value="-">-</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="example-tel-input" class="col-md-3 col-form-label">Pre-event Questions for Panel Q&A <small class="text-danger">*</small>:</label>
+                                            <div class="col-md-9">
+                                                <textarea class="form-control" rows="5" name="others" value="{{ values.others }}"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="example-month-input" class="col-md-3 col-form-label">Source of new about Info Session:</label>
+                                            <div class="col-md-9">
+                                                <select class="custom-select col-12" id="inlineFormCustomSelect" name="SourceOfInfo">
+                                                    <option value="-">-</option>
+                                                    <option value="SocialMedia">Social Media</option>
+                                                    <option value="MailerFromSP">Mailer from SP</option>
+                                                    <option value="Others">Others</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="example-tel-input" class="col-md-3 col-form-label">Fill this if "Others" was selected above <small class="text-danger">*</small>:</label>
+                                            <div class="col-md-9">
+                                                <textarea class="form-control" rows="5" name="others" value="{{ values.others }}"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="example-tel-input" class="col-md-3 col-form-label">Which School of Computing Course are you interested in?</label>
+                                            <div class="col-md-9">
+                                                <div class="row">
+                                                    <input type="checkbox" id="md_checkbox_15" />
+                                                    <label for="md_checkbox_15" class="d-inline-block ml-2">Common Infocomm Technology Programme (S32)</label>
+                                                </div>
+                                                <div class="row">
+                                                    <input type="checkbox" id="md_checkbox_15" class="material-inputs chk-col-orange"/>
+                                                    <label for="md_checkbox_15" class="d-inline-block ml-2">Applied AI and Analytics (S30)</label>
+                                                </div>
+                                                <div class="row">
+                                                    <input type="checkbox" id="md_checkbox_15" class="material-inputs chk-col-orange"/>
+                                                    <label for="md_checkbox_15" class="d-inline-block ml-2">Infocomm Security Management (S54)</label>
+                                                </div>
+                                                <div class="row">
+                                                    <input type="checkbox" id="md_checkbox_15" class="material-inputs chk-col-orange"/>
+                                                    <label for="md_checkbox_15" class="d-inline-block ml-2">Information Technology (S69)</label>
+                                                </div>
+                                                <div class="row">
+                                                    <input type="checkbox" id="md_checkbox_15" class="material-inputs chk-col-orange"/>
+                                                    <label for="md_checkbox_15" class="d-inline-block ml-2">Business Information Technology (S82)</label>
+                                                </div>  
+                                            </div>
+                                    
+                                        <div class="form-group row">
                                     </form>
                                 </div>
                             </div>
@@ -282,4 +354,19 @@
     <script src="{% static 'app/js/custom.js' %}"></script>
     <!-- Page related UI handlers -->
     <script src="{% static 'app/js/sp-events.js' %}"></script>
+    <script src="{% static 'assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' %}"></script>
+    <script>
+        // Date Picker
+        jQuery('.mydatepicker, #datepicker, .input-group.date').datepicker();
+        jQuery('#datepicker-autoclose').datepicker({
+            autoclose: true,
+            todayHighlight: true
+        });
+        jQuery('#date-range').datepicker({
+            toggleActive: true
+        });
+        jQuery('#datepicker-inline').datepicker({
+            todayHighlight: true
+        });
+        </script>
 {% endblock %}
