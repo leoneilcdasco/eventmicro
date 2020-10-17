@@ -16,7 +16,7 @@ def index(request):
     print('DEBUG>>> index(): rendering registration default page')
 
     today    = datetime.today()
-    calendar = datetime(today.year, today.month, 1)
+    calendar = datetime(today.year, today.month, today.day)
     year     = today.year
 
     event_list = []
