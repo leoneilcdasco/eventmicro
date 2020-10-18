@@ -1,0 +1,124 @@
+{% include 'partials/_alerts.html' %}
+<form class="form" id="reg_form">
+    {% csrf_token %}
+    <input type="hidden" id="event_id" name="event_id" value="{{ event_id }}">
+    <div class="form-group mt-4 row">
+        <label for="example-text-input" class="col-md-3 col-form-label">First name:</label>
+        <div class="col-md-9">
+            <input class="form-control" placeholder="First name of prospective student" type="text" name="first_name" value="{{ values.first_name }}" id="first_name_id"
+            >
+        </div>
+    </div>
+    <div class="form-group mt-4 row">
+        <label for="example-text-input" class="col-md-3 col-form-label">Last name:</label>
+        <div class="col-md-9">
+            <input class="form-control" placeholder="Last name of prospective student" type="text" name="last_name" value="{{ values.last_name }}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="example-email-input" class="col-md-3 col-form-label">Email:</label>
+        <div class="col-md-9">
+            <input class="form-control" placeholder="email@domain.com" type="email" name="email" value="{{ values.email }}">
+            <div class="invalid-feedback">Please provide your email</div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="example-email-input" class="col-md-3 col-form-label">Verify Email:</label>
+        <div class="col-md-9">
+            <input class="form-control" placeholder="email@domain.com" type="email" name="email_verify" value="{{ values.email_verify }}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="example-tel-input" class="col-md-3 col-form-label">Tel. No.:</label>
+        <div class="col-md-9">
+            <input class="form-control phone-singapore" type="text" name="phone" id="phone-singapore" placeholder="(+65)9999-9999" im-insert="true" value="{{ values.phone }}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="example-tel-input" class="col-md-3 col-form-label">DOB:</label>
+        <div class="col-md-9">
+            <div class="input-group">
+            <input class="form-control" id="mdate" placeholder="MM-DD-YYYY" name="dob" value="{{ values.dob }}">
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="icon-calender"></i></span>
+            </div> 
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="example-month-input" class="col-md-3 col-form-label">Gender:</label>
+        <div class="col-md-9">
+            <select class="custom-select col-12" id="inlineFormCustomSelect" name="gender">
+                <option value="-">-</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="example-month-input" class="col-md-3 col-form-label">Type of Participant:</label>
+        <div class="col-md-9">
+            <select class="custom-select col-12" id="participant_type_id" name="participant_type" data-other="participant_other_id">
+                <option value="0">-</option>
+                <option value="1">Parent</option>
+                <option value="2">O Level School Leaver</option>
+                <option value="3">N Level School Leaver</option>
+                <option value="4">ITE Graduate/Student</option>
+                <option value="5">Secondary School Student (Level), School Teacher/Educator</option>
+                <option value="100">Others</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group row hide" id="participant_other_id">
+        <label for="example-tel-input" class="col-md-3 col-form-label">Fill this if "Others" was selected above:</label>
+        <div class="col-md-9">
+            <textarea class="form-control" rows="2" name="participant_other" value="{{ values.participant_other }}"></textarea>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="example-month-input" class="col-md-3 col-form-label">Number of Attendees:</label>
+        <div class="col-md-9">
+            <select class="custom-select col-12" id="attendees_id" name="attendees">
+                <option value="-">-</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="example-tel-input" class="col-md-3 col-form-label">Pre-event Questions for Panel Q&A:</label>
+        <div class="col-md-9">
+            <textarea class="form-control" rows="5" name="inquiry" value="{{ values.inquiry }}"></textarea>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="example-month-input" class="col-md-3 col-form-label">Source of new about Info Session:</label>
+        <div class="col-md-9">
+            <select class="custom-select col-12" id="info_source_id" name="info_source" data-other="info_other_id">
+                <option value="0">-</option>
+                <option value="1">Social Media</option>
+                <option value="2">Mailer from SP</option>
+                <option value="100">Others</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group row hide" id="info_other_id">
+        <label for="example-tel-input hide" class="col-md-3 col-form-label">Fill this if "Others" was selected above:</label>
+        <div class="col-md-9">
+            <textarea class="form-control" rows="2" name="info_other" value="{{ values.info_other }}"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="example-tel-input" class="col-md-3 col-form-label">Which School of {{ event.school }} are you interested in?</label>
+        <div class="col-md-9">
+            {% for course in courses %}
+            <div>
+                <input type="checkbox" name="course" id="course_check" value="{{ course.id }}" class="material-inputs chk-col-red"/>
+                <label for="course_check">{{ course.name }}</label>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</form>
