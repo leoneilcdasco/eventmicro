@@ -63,7 +63,7 @@ def booking1(request):
 def booking2(request):
     print('DEBUG>>> booking2(): rendering page for guidance counselor')
     context = {}
-    return render(request, 'book_counselor_1.html', context)
+    return render(request, 'book_guidance_counselor.html', context)
 
 # -----------------------------------------------------------------------------
 # Render booking for course counselor
@@ -71,7 +71,7 @@ def booking2(request):
 def booking3(request):
     print('DEBUG>>> booking1(): rendering page for info session')
     context = {}
-    return render(request, 'book_counselor_2.html', context)
+    return render(request, 'book_course_counselor.html', context)
 
 # -----------------------------------------------------------------------------
 # Check blank string data
