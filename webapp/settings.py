@@ -132,13 +132,18 @@ AUTHENTICATION_BACKENDS = (
 EMAIL_BACKEND = 'django_ses.SESBackend'
 EMAIL_HOST = 'email-smtp.ap-southeast-1.amazonaws.com' 
 EMAIL_PORT = '25'
-EMAIL_HOST_USER = 'AKIAXLQHTSF7FM6LYH5R'
-EMAIL_HOST_PASSWORD = 'BI3K41HcC/VDg/xEU/2uXYAk+43cd4FW6mEmZi22O+KU'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 
 AWS_SES_REGION_NAME = 'ap-southeast-1'
 AWS_SES_REGION_ENDPOINT = 'email.ap-southeast-1.amazonaws.com'
 
-AWS_ACCESS_KEY_ID = 'AKIAXLQHTSF7LCFHERMB' 
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = '' 
+AWS_SECRET_ACCESS_KEY = ''
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
