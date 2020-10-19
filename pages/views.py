@@ -38,22 +38,6 @@ def index(request):
 # Render booking for live info session
 # -----------------------------------------------------------------------------
 def booking1(request):
-    print('DEBUG>>> booking1(): rendering page for info session')
-    context = {}
-    return render(request, 'book_infosession.html', context)
-
-# -----------------------------------------------------------------------------
-# Render booking for guidance counselor
-# -----------------------------------------------------------------------------
-def booking2(request):
-    print('DEBUG>>> booking2(): rendering page for guidance counselor')
-    context = {}
-    return render(request, 'book_counselor_1.html', context)
-
-# -----------------------------------------------------------------------------
-# Render booking for course counselor
-# -----------------------------------------------------------------------------
-def booking3(request):
     print('DEBUG>>> booking3(): rendering page for course counselor')
 
     start_date = REG_START_DATE
@@ -71,6 +55,22 @@ def booking3(request):
         calendar += delta
 
     context = { 'event_list' : event_list }
+    return render(request, 'book_infosession.html', context)
+
+# -----------------------------------------------------------------------------
+# Render booking for guidance counselor
+# -----------------------------------------------------------------------------
+def booking2(request):
+    print('DEBUG>>> booking2(): rendering page for guidance counselor')
+    context = {}
+    return render(request, 'book_counselor_1.html', context)
+
+# -----------------------------------------------------------------------------
+# Render booking for course counselor
+# -----------------------------------------------------------------------------
+def booking3(request):
+    print('DEBUG>>> booking1(): rendering page for info session')
+    context = {}
     return render(request, 'book_counselor_2.html', context)
 
 # -----------------------------------------------------------------------------
