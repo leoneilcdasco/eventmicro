@@ -159,9 +159,9 @@ def register(request):
     if event:
         courses = Course.objects.filter(school=event.first().school)
         context['event_id'] = event_id
-        context['event']    = event
+        context['event']    = event.first()
         context['courses']  = courses
-        
+
     return render(request, '_regform.html', context)
 
 # -----------------------------------------------------------------------------
