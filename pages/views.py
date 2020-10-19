@@ -1,3 +1,4 @@
+import traceback 
 from datetime import datetime, timedelta 
 
 from django.http import HttpResponse
@@ -86,6 +87,7 @@ def register(request):
     print('DEBUG>>> register(): Registration API endpoint')
     context = {}
     error   = False
+    status  = 200
 
     # POST request save data
     if request.method == 'POST':
@@ -113,6 +115,9 @@ def register(request):
             if isBlank(event_id):
                 print('1 >> event_id = ' + event_id)
                 raise Exception("No data exception")
+            else:
+                event = Event.objects.filter(id=event_id).first()
+
             if isBlank(first_name):
                 print('2 >> first_name = ' + first_name)
                 raise Exception("No data exception")
@@ -137,32 +142,47 @@ def register(request):
 
             dob_date = datetime.strptime(dob, '%Y-%m-%d')
             
-            event = Event.objects.filter(id=event_id).first()
             if event:
                 participant, created = Participant.objects.get_or_create( event=event, first_name=first_name, 
                                                     last_name=last_name, email=email, 
                                                     phone=phone, dob=dob_date, gender=gender)
+                #Send email invite
+                invite = {  'date'       : event.date,
+                            'time'       : event.start_time,
+                            'name'       : str(participant.first_name + ' ' + participant.last_name), 
+                            'invitation' : event.invitation,
+                            'tagline'    : event.tagline,
+                            'details'    : event.details,
+                            'photo'      : event.photo,
+                            'email'      : participant.email }
+
+                context['invite'] = invite
+                send_registration_email(invite)
+
         except:
             error = True
+            print (traceback.format_exc())
 
         if error:
             messages.error(request, 'Please provide correct registration information.')
-            return render(request, '_regform.html', context, status=400)
+            status = 400
+            #return render(request, '_regform.html', context, status=400)
         else:
             return HttpResponse(status=200)
 
     # GET request render the form
     else:
         event_id = request.GET['event_id']
-        event    = Event.objects.filter(id=event_id)
+        event    = Event.objects.filter(id=event_id).first()
 
     if event:
-        courses = Course.objects.filter(school=event.first().school)
+        courses = Course.objects.filter(school=event.school)
         context['event_id'] = event_id
-        context['event']    = event.first()
+        context['event']    = event
         context['courses']  = courses
+        print(event.school)
 
-    return render(request, '_regform.html', context)
+    return render(request, '_regform.html', context, status=status)
 
 # -----------------------------------------------------------------------------
 # Email template test endpoint only
