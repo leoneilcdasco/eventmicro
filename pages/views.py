@@ -87,6 +87,7 @@ def register(request):
     print('DEBUG>>> register(): Registration API endpoint')
     context = {}
     error   = False
+    err_fno = 0
     status  = 200
 
     # POST request save data
@@ -105,50 +106,77 @@ def register(request):
             gender        = request.POST['gender']
             participant_type  = request.POST['participant_type']
             participant_other = request.POST['participant_other']
-            attendees   = request.POST['attendees']
-            inquiry     = request.POST['inquiry']
-            info_source = request.POST['info_source']
-            info_other  = request.POST['info_other']
-            #course      = request.POST['course']
+            attendees     = request.POST['attendees']
+            inquiry       = request.POST['inquiry']
+            info_source   = request.POST['info_source']
+            info_other    = request.POST['info_other']
+            course        = request.POST.getlist('course')
 
+            if course:
+                context['course_ids'] = [ int(i) for i in course ]
+                interested_in = ','.join(course)
+            
             # Perform input validation
             if isBlank(event_id):
                 print('1 >> event_id = ' + event_id)
+                err_fno = 1
                 raise Exception("No data exception")
             else:
                 event = Event.objects.filter(id=event_id).first()
 
             if isBlank(first_name):
                 print('2 >> first_name = ' + first_name)
+                err_fno = 2
                 raise Exception("No data exception")
             if isBlank(last_name):
                 print('3 >> last_name = ' + last_name)
+                err_fno = 3
                 raise Exception("No data exception")
             if isBlank(email):
                 print('4 >> email = ' + email)
+                err_fno = 4
                 raise Exception("No data exception")
             if isBlank(email_verify):
                 print('5 >> email_verify = ' + email_verify)
+                err_fno = 5
                 raise Exception("No data exception")
+            if email != email_verify:
+                print('5 >> email <> email_verify')
+                err_fno = 5
+                raise Exception("Invalid data exception")
             if isBlank(phone):
                 print('6 >> phone = ' + phone)
+                err_fno = 6
                 raise Exception("No data exception")
             if isBlank(dob):
                 print('7 >> dob = ' + dob)
+                err_fno = 7
                 raise Exception("No data exception")
-            if email != email_verify:
-                print('8 >> email <> email_verify')
+            if isBlank(gender) or gender == '-':
+                print('8 >> gender = ' + gender)
+                err_fno = 8
+                raise Exception("Invalid data exception")
+            if int(participant_type) == 0:
+                print('9 >> participant_type =' +  participant_type)
+                err_fno = 9
+                raise Exception("Invalid data exception")
+            if int(attendees) == 0:
+                print('10 >> attendees =' +  attendees)
+                err_fno = 10
                 raise Exception("Invalid data exception")
 
             dob_date = datetime.strptime(dob, '%Y-%m-%d')
             
             if event:
                 participant, created = Participant.objects.get_or_create( event=event, first_name=first_name, 
-                                                    last_name=last_name, email=email, 
-                                                    phone=phone, dob=dob_date, gender=gender)
+                                                    last_name=last_name, email=email,  phone=phone, dob=dob_date, 
+                                                    gender=gender, question=inquiry, participant_type=participant_type, 
+                                                    participant_other=participant_other, infosource_type=info_source, 
+                                                    infosource_other=info_other, interested_in=interested_in)
                 #Send email invite
                 invite = {  'date'       : event.date,
                             'time'       : event.start_time,
+                            'calendar'   : event.calendar_time(),
                             'name'       : str(participant.first_name + ' ' + participant.last_name), 
                             'invitation' : event.invitation,
                             'tagline'    : event.tagline,
@@ -158,15 +186,16 @@ def register(request):
 
                 context['invite'] = invite
                 send_registration_email(invite)
-
+                
         except:
             error = True
+            context['err_fno'] = err_fno
+            print ('ERROR>>> Error in field no : ' + str(err_fno))
             print (traceback.format_exc())
 
         if error:
             messages.error(request, 'Please provide correct registration information.')
             status = 400
-            #return render(request, '_regform.html', context, status=400)
         else:
             return HttpResponse(status=200)
 
@@ -180,7 +209,6 @@ def register(request):
         context['event_id'] = event_id
         context['event']    = event
         context['courses']  = courses
-        print(event.school)
 
     return render(request, '_regform.html', context, status=status)
 
@@ -190,7 +218,11 @@ def register(request):
 def invite(request):
     print('DEBUG>>> invite(): rendering invite email HTML')
     
+    start = datetime(2020, 10, 26, 10, 30)
+    end   = datetime(2020, 10, 26, 11, 30)
+
     invite = {  'start_date' : datetime.today(),
+                'calendar'   : {'start' : start, 'end' : end },
                 'name'       : 'Sirhc Someroda', 
                 'invitation' : 'Zoom invite here https://zoom/meeting/1245',
                 'tagline'    : 'Test Tagline',
@@ -200,4 +232,5 @@ def invite(request):
 
     context = { 'invite' : invite }
     send_registration_email(invite)
+
     return render(request, 'email_invite.html', context)

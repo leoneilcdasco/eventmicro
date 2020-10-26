@@ -139,3 +139,4 @@ dmypy.json
 .pytype/
 
 .DS_Store
+db.sqlite3

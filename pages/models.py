@@ -64,6 +64,16 @@ class Event(models.Model):
     invitation = models.TextField(blank=True)
     def __str__(self):
         return self.name
+    def calendar_time(self):
+
+        # datetime(year, month, day, hour, minute, second, microsecond)
+        start = datetime(self.date.year, self.date.month, self.date.day, \
+                         self.start_time.hour, self.start_time.minute, 0, 0)
+
+        end = datetime(self.date.year, self.date.month, self.date.day, \
+                         self.end_time.hour, self.end_time.minute, 0, 0)
+
+        return {'start' : start, 'end' : end }
 
 class Participant(models.Model):
     event         = models.ForeignKey(Event, on_delete=models.CASCADE)
