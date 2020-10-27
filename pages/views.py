@@ -110,11 +110,11 @@ def register(request):
             inquiry       = request.POST['inquiry']
             info_source   = request.POST['info_source']
             info_other    = request.POST['info_other']
-            course        = request.POST.getlist('course')
+            courses       = request.POST.getlist('course')
 
-            if course:
-                context['course_ids'] = [ int(i) for i in course ]
-                interested_in = ','.join(course)
+            if courses:
+                context['course_ids'] = [ int(i) for i in courses ]
+                interested_in = ','.join(courses)
             
             # Perform input validation
             if isBlank(event_id):
@@ -173,6 +173,13 @@ def register(request):
                                                     gender=gender, question=inquiry, participant_type=participant_type, 
                                                     participant_other=participant_other, infosource_type=info_source, 
                                                     infosource_other=info_other, interested_in=interested_in)
+
+                course_invites = []
+                for course_id in courses:
+                    course = Course.objects.filter(id=course_id).first()
+                    course_participant, created = CourseParticipant.objects.get_or_create(course=course, participant=participant)
+                    course_invites.append(course.invitation)
+                
                 #Send email invite
                 invite = {  'date'       : event.date,
                             'time'       : event.start_time,
@@ -182,7 +189,8 @@ def register(request):
                             'tagline'    : event.tagline,
                             'details'    : event.details,
                             'photo'      : event.photo,
-                            'email'      : participant.email }
+                            'email'      : participant.email,
+                            'course_invites' : course_invites }
 
                 context['invite'] = invite
                 send_registration_email(invite)
@@ -221,6 +229,8 @@ def invite(request):
     start = datetime(2020, 10, 26, 10, 30)
     end   = datetime(2020, 10, 26, 11, 30)
 
+    course_invites = [ 'Link 1', 'Link 2', 'Link 3' ]
+
     invite = {  'start_date' : datetime.today(),
                 'calendar'   : {'start' : start, 'end' : end },
                 'name'       : 'Sirhc Someroda', 
@@ -228,7 +238,8 @@ def invite(request):
                 'tagline'    : 'Test Tagline',
                 'details'    : 'The quick brown fox jump over the lazy dog near the bank of the river.',
                 'photo'      : 'web-defaults/placeholder.png',
-                'email'      : 'sirhcsomeroda@gmail.com' }
+                'email'      : 'sirhcsomeroda@gmail.com',
+                'course_invites' : course_invites }
 
     context = { 'invite' : invite }
     send_registration_email(invite)

@@ -11,6 +11,17 @@ from django.template.loader import render_to_string
 from email.mime.text import MIMEText
 
 # -----------------------------------------------------------------------------
+# Append invitation links 
+# -----------------------------------------------------------------------------
+def invitation_links(invite):
+    links = ''
+    invitation = invite['invitation'] + '<hr>'
+    for link in invite['course_invites']:
+        links = links + '<br>' + link
+    invite['invitation'] = invitation + links
+    return invite
+
+# -----------------------------------------------------------------------------
 # Sends email webinar registration 
 # -----------------------------------------------------------------------------
 def send_registration_email(invite):
@@ -18,7 +29,7 @@ def send_registration_email(invite):
 
     # Site domain setting
     domain = 'https://' + str(Site.objects.get_current())
-    context= { 'domain' : domain, 'invite' : invite }
+    context= { 'domain' : domain, 'invite' : invitation_links(invite) }
  
     # Set email parameters
     subject    = '[Singapore Polytechnic] Thank you for registering to our Webinar!'

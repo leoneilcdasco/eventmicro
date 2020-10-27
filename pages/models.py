@@ -48,6 +48,7 @@ class Course(models.Model):
     school = models.ForeignKey(School, on_delete=models.CASCADE)
     name   = models.CharField(max_length=250)
     description = models.TextField(blank=True)
+    invitation  = models.TextField(blank=True)
     def __str__(self):
         return self.name
 
@@ -104,5 +105,9 @@ class Participant(models.Model):
             courses_id = self.interested_in.split(',')
         return courses_id
 
-
-    
+class CourseParticipant(models.Model):
+    course      = models.ForeignKey(Course, on_delete=models.CASCADE)
+    participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
+    description = models.TextField(blank=True)
+    def __str__(self):
+        return str(self.course) + '> ' + str(self.participant)
