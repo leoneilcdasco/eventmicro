@@ -50,5 +50,6 @@ Twisted==20.3.0
 txaio==20.4.1
 typed-ast==1.4.1
 urllib3==1.25.10
+vobject==0.9.6.1
 wrapt==1.12.1
 zope.interface==5.1.0
