@@ -21,6 +21,54 @@
 
 {% block extrastyle %}
   <style>
+
+    @font-face {
+      font-family: TTCommons-Bold;
+      src: url(../../assets/fonts/tt-commons/TTF/TTCommons-Bold.ttf);
+    }
+    
+    @font-face {
+      font-family: TTCommons-medium;
+      src: url(../../assets/fonts/tt-commons/TTF/TTCommons-Medium.ttf);
+    }
+    
+    @font-face {
+      font-family: TTCommons-regular;
+      src: url(../../assets/fonts/tt-commons/TTF/TTCommons-Regular.ttf);
+    }
+
+    body {
+     font-family: "TTCommons-regular", "Rubik", sans-serif;
+    }
+
+    h1,
+    h2
+    {
+      color: #000000;
+      font-family: "TTCommons-bold", "Rubik", sans-serif;
+      font-weight: 400; }
+
+    h3,
+    h4 {
+      color: #000000;
+      font-family: "TTCommons-medium", "Rubik", sans-serif;
+      font-weight: 400; }
+
+    h5,
+    h6 {
+      color: #000000;
+      font-family: "TTCommons-regular", "Rubik", sans-serif;
+      font-weight: 400; }
+
+    td, th {
+      font-size: 13px;
+      line-height: 16px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+      padding: 8px;
+      font-family: "TTCommons-regular", "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+    }
+
     #header {
       width: auto;
       height: auto;
@@ -28,7 +76,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 10px 40px;
-      background: #2f3d4a;
+      background: #000000;
       color: #ffc;
       overflow: hidden;
     }

@@ -1,0 +1,21 @@
+#main-wrapper[data-layout="vertical"] .topbar .navbar-collapse[data-navbarbg="skin1"], 
+#main-wrapper[data-layout="vertical"] .topbar[data-navbarbg="skin1"], 
+#main-wrapper[data-layout="horizontal"] .topbar .navbar-collapse[data-navbarbg="skin1"], 
+#main-wrapper[data-layout="horizontal"] .topbar[data-navbarbg="skin1"] {
+    background: #000000;
+}
+
+#main-wrapper[data-layout="vertical"] .topbar .top-navbar .navbar-header[data-logobg="skin1"], 
+#main-wrapper[data-layout="horizontal"] .topbar .top-navbar .navbar-header[data-logobg="skin1"] {
+    background: #000000;
+}
+
+.breadcrumb-item.active {
+    color: #000000;
+}
+
+.footer {
+    padding: 30px 30px 10px 30px;
+    background: #000000;
+    color: #8f9aa5;
+}

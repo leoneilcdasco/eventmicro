@@ -26,6 +26,22 @@ File: scss
 @import url(../../icons/material-design-iconic-font/css/materialdesignicons.min.css);
 @import url(../../spinners.css);
 @import url(../../animate.css);
+
+@font-face {
+  font-family: TTCommons-Bold;
+  src: url(../../assets/fonts/tt-commons/TTF/TTCommons-Bold.ttf);
+}
+
+@font-face {
+  font-family: TTCommons-medium;
+  src: url(../../assets/fonts/tt-commons/TTF/TTCommons-Medium.ttf);
+}
+
+@font-face {
+  font-family: TTCommons-regular;
+  src: url(../../assets/fonts/tt-commons/TTF/TTCommons-Regular.ttf);
+}
+
 .preloader {
   width: 100%;
   height: 100%;
@@ -52,10 +68,10 @@ Global Styles
 
 body {
   background: #fff;
-  font-family: "Rubik", sans-serif;
+  font-family: "TTCommons-regular", "Rubik", sans-serif;
   margin: 0;
   overflow-x: hidden;
-  color: #67757c;
+  color: #000000;
   font-weight: 300; }
 
 html {
@@ -82,13 +98,22 @@ a.link {
 Headings
 *******************/
 h1,
-h2,
+h2
+{
+  color: #000000;
+  font-family: "TTCommons-bold", "Rubik", sans-serif;
+  font-weight: 400; }
+
 h3,
-h4,
+h4 {
+  color: #000000;
+  font-family: "TTCommons-medium", "Rubik", sans-serif;
+  font-weight: 400; }
+
 h5,
 h6 {
-  color: #455a64;
-  font-family: "Rubik", sans-serif;
+  color: #000000;
+  font-family: "TTCommons-regular", "Rubik", sans-serif;
   font-weight: 400; }
 
 h1 {
@@ -789,8 +814,11 @@ html body .waves-notransition {
 .text-white {
   color: #ffffff; }
 
+  .text-danger {
+    color: #ea1331 !important; }
+    
 .text-danger {
-  color: #fc4b6c !important; }
+  color: #ea1331 !important; }
 
 .text-muted {
   color: #99abb4 !important; }
@@ -829,6 +857,10 @@ html body .waves-notransition {
 Buttons
 ******************/
 .btn {
+  font-family: "TTCommons-medium";
+  font-size: 18pt;
+  line-height: 1.5;
+  border-radius: 8px;
   padding: 7px 12px;
   font-size: 14px;
   cursor: pointer; }
@@ -985,8 +1017,8 @@ a.btn:focus {
 
 .btn-danger,
 .btn-danger.disabled {
-  background: #fc4b6c;
-  border: 1px solid #fc4b6c; }
+  background: #ea1331;
+  border: 1px solid #ea1331; }
   .btn-danger:hover,
   .btn-danger.disabled:hover {
     background: #fc4b6c;
@@ -1164,8 +1196,8 @@ a.btn:focus {
 .open > .dropdown-toggle.btn-danger:hover,
 .btn-danger.focus,
 .btn-danger:focus {
-  background-color: #e6294b;
-  border: 1px solid #e6294b; }
+  background-color: #ea1331;
+  border: 1px solid #ea1331; }
 
 .btn-inverse:hover,
 .btn-inverse:focus,
@@ -1671,7 +1703,7 @@ ul.list-icons {
 
 .footer {
   padding: 30px 0 30px;
-  background: #2f3d4a;
+  background: #000000;
   color: #8f9aa5; }
 
 .footer .sub-footer {

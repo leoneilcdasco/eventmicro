@@ -40,6 +40,8 @@ def index(request):
 # -----------------------------------------------------------------------------
 def booking1(request):
     print('DEBUG>>> booking3(): rendering page for course counselor')
+    
+    #TODO count access log
 
     start_date = REG_START_DATE
     end_date   = REG_END_DATE
@@ -64,6 +66,9 @@ def booking1(request):
 def booking2(request):
     print('DEBUG>>> booking2(): rendering page for guidance counselor')
     context = {}
+
+    #TODO count access log
+
     return render(request, 'book_guidance_counselor.html', context)
 
 # -----------------------------------------------------------------------------
@@ -72,6 +77,9 @@ def booking2(request):
 def booking3(request):
     print('DEBUG>>> booking1(): rendering page for info session')
     context = {}
+
+    #TODO count access log
+
     return render(request, 'book_course_counselor.html', context)
 
 # -----------------------------------------------------------------------------
@@ -168,11 +176,13 @@ def register(request):
             dob_date = datetime.strptime(dob, '%Y-%m-%d')
             
             if event:
-                participant, created = Participant.objects.get_or_create( event=event, first_name=first_name, 
-                                                    last_name=last_name, email=email,  phone=phone, dob=dob_date, 
-                                                    gender=gender, question=inquiry, participant_type=participant_type, 
-                                                    participant_other=participant_other, infosource_type=info_source, 
-                                                    infosource_other=info_other, interested_in=interested_in)
+                new_values = {  'phone' : phone, 'dob' : dob_date, 'gender' : gender, 'question' : inquiry, 
+                                'participant_type' : participant_type, 'participant_other' : participant_other, 
+                                'infosource_type' : info_source, 'infosource_other' : info_other, 
+                                'attendees' : attendees, 'interested_in' : interested_in,  }
+
+                participant, created = Participant.objects.update_or_create( event=event, first_name=first_name, 
+                                                    last_name=last_name, email=email,  defaults=new_values)
 
                 course_invites = []
                 for course_id in courses:

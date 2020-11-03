@@ -1,0 +1,42 @@
+<!-- ============================================================== -->
+<!-- Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->
+<aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+    <div class="scroll-sidebar">
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav">
+            <ul id="sidebarnav">
+                <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i>
+                    <h6 class="hide-menu">SESSION ATTENDEES</h6></li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" title="All Schools"
+                        href="{% url 'attendees' 0 %}" aria-expanded="false"><i class="mdi mdi-domain"></i>
+                        <span class="hide-menu">&nbsp; All Schools </span></a>
+                </li>
+                {% for school in schools %}
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" title="{{ school }}"
+                        href="{% url 'attendees' school.id %}" aria-expanded="false"><i class="mdi mdi-school"></i>
+                        <span class="hide-menu">&nbsp; {{ school }} </span></a>
+                </li>
+                {% endfor %}
+            </ul>
+        </nav>
+        <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+    <!-- Bottom points-->
+    <div class="sidebar-footer">
+        <!-- item-->
+        {% if user.is_superuser %}
+        <a href="/admin" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a>
+        {% endif %}
+        <!-- item-->
+        <a href="{% url 'logout' %}" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a>
+    </div>
+    <!-- End Bottom points-->
+</aside>
+<!-- ============================================================== -->
+<!-- End Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->

@@ -1,0 +1,163 @@
+{% extends 'partials/_base.html' %}
+
+{% load static %}
+
+{% block page_style %}
+    <link href="{% static 'app/css/style.css' %}" rel="stylesheet" />
+    <style>
+        #header {
+            width: auto;
+            height: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 40px;
+            background: #000000;
+            color: #ffc;
+            overflow: hidden;
+        }
+
+        .btn-info {
+            color: #fff;
+            background-color: #ea1331;
+            border-color: #ea1331;
+            border-radius: 10px;
+        }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <div class="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="preloader">
+            <div class="lds-ripple">
+                <div class="lds-pos"></div>
+                <div class="lds-pos"></div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Login box.scss -->
+        <!-- ============================================================== -->
+        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center">
+            <div class="auth-box bg-white rounded">
+
+                <div class="logo">
+                    <div id="header">
+                        <div id="branding">
+                            <h1 id="head">
+                                <div class="navbar-header">
+                                <a id="mobile_btn" href="javascript:void(0);">
+                                    <span class="bar-icon">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    </span>
+                                </a>
+                                <span class="navbar-brand logo text-white">
+                                    <img src="/media/web-defaults/sp-logo-dark.png" class="img-fluid" alt="Logo"> Organizer
+                                </span>
+                                </div>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-4" id="loginform">
+                   <!-- Form -->
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- Alerts -->
+							{% include 'partials/_alerts.html' %}
+                            <form class="form-horizontal mt-3 form-material" id="loginform" action="{% url 'login'%}" method="POST">
+                                {% csrf_token %}
+                                <div class="form-group mb-3">
+                                    <div class="">
+                                        <input class="form-control" type="text" name="username" placeholder="Username" value="{{ username }}"required> </div>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <div class="">
+                                        <input class="form-control" type="password"  name="password" placeholder="Password" aria-required=""> </div>
+                                </div>
+                                <div class="form-group text-center mt-4">
+                                    <div class="col-xs-12">
+                                        <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Log In</button>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0 mt-4">
+                                    <div class="col-sm-12 justify-content-center d-flex">
+                                        <p>Login to site admin instead? <a href="/admin" class="text-info font-weight-normal ml-1">Admin</a></p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div id="recoverform">
+                    <div class="logo">
+                        <h3 class="font-weight-medium mb-3">Recover Password</h3>
+                        <span class="text-muted">Enter your Email and instructions will be sent to you!</span>
+                    </div>
+                    <div class="row mt-3 form-material">
+                        <!-- Form -->
+                        <form class="col-12" action="index.html">
+                            <!-- email -->
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <input class="form-control" type="email" required="" placeholder="Username">
+                                </div>
+                            </div>
+                            <!-- pwd -->
+                            <div class="row mt-3">
+                                <div class="col-12">
+                                    <button class="btn btn-block btn-lg btn-primary text-uppercase" type="submit" name="action">Reset</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Login box.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+    </div>
+{% endblock %}
+
+{% block page_scripts %}
+    <!-- ============================================================== -->
+    <!-- This page plugin js -->
+    <!-- ============================================================== -->
+    <script>
+    $('[data-toggle="tooltip"]').tooltip();
+    $(".preloader").fadeOut();
+    // ============================================================== 
+    // Login and Recover Password 
+    // ============================================================== 
+    $('#to-recover').on("click", function() {
+        $("#loginform").slideUp();
+        $("#recoverform").fadeIn();
+    });
+    </script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="{% static 'bootstrap/js/popper.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+{% endblock %}

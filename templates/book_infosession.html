@@ -28,39 +28,46 @@
     }
 
     .dtp > .dtp-content > .dtp-date-view > header.dtp-header {
-        background: #fc4b6c;
+        background: #ea1331;
         color: #fff;
         text-align: center;
         padding: 0.3em;
     }
 
     .dtp div.dtp-date, .dtp div.dtp-time {
-        background: #fc4b6c;
+        background: #ea1331;
         text-align: center;
         color: #fff;
         padding: 10px;
     }
 
     .dtp table.dtp-picker-days tr > td > a.selected {
-        background: #fc4b6c;
+        background: #ea1331;
         color: #fff;
     }
 
     .btn-success {
         color: #fff;
-        background-color: #fc4b6c !important;
-        border-color: #fc4b6c !important;
+        background-color: #ea1331 !important;
+        border-color: #ea1331 !important;
     }
 
     .btn-success, .btn-success:hover {
-        background:#fc4b6c;
-        border: 1px solid #fc4b6c;
+        background:#ea1331;
+        border: 1px solid #ea1331;
     }
 
     .btn-success, .btn-success.disabled {
         background:#d37082;
         border: 1px solid #d37082;
     }
+
+    .btn-inverse, .btn-inverse.disabled {
+        background: #000000;
+        border: 1px solid #000000;
+        color: #ffffff;
+    }
+
   </style>
 {% endblock %}
 
@@ -109,7 +116,7 @@
             <div class="row">
               <div class="col-md-12">
                 <h2>
-                  Welcome to SP Open Day <span class="text-danger"> School Info Sessions </span> Registration Site
+                  WELCOME TO <span class="text-danger">SP's OPEN DAY</span> SCHOOL <span class="text-warning"><u>INFO SESSIONS</u></span> REGISTRATION SITE
                 </h2>
                 <p>
                   To register for a webinar simply click on the course you're interested in and a registration screen will appear.
@@ -119,12 +126,12 @@
 
            {% for session in event_list %}
             <hr>
-            <p class="text-info">{{ session.day }}</p>
+            <h3 class="text-danger">{{ session.day|upper }}</h3>
             <!-- ROW Cards -->
             <div class="row">
                 {% for event in session.events%}
                 <div class="col-md-3 mb-4">
-                    <div class="card text-white">
+                    <div class="card text-white border-0">
                         <img class="card-img" src="/media/{{ event.photo }}" alt="Card image">
                         <div class="card-img-overlay text-white">
                             <div class="d-flex no-block align-items-center">
