@@ -75,9 +75,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'eventmicrodb',
-        'USER': 'eventmicroadmin',
-        'PASSWORD': 'Buildtech2020',
-        'HOST': 'sp-event-prod.cdwndgtv44ou.ap-southeast-1.rds.amazonaws.com'
+        'USER': 'eventmicrodbuser',
+        'PASSWORD': 'one-22',
+        'HOST': 'localhost'
     }
 }
 
