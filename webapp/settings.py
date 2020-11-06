@@ -13,7 +13,7 @@ SECRET_KEY = '&ab!3efsouag8#6+vp40r1(9o@rdr!t%0s*k)c2w^$uv3zy#m6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'sp-event-reg.onedash22.com.au', 'www.sp-event-reg.onedash22.com.au', 'django-env.eba-rzdkyskm.ap-southeast-1.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'spoh21registration.com', 'www.spoh21registration.com']
 
 
 # Application definition
@@ -72,12 +72,13 @@ WSGI_APPLICATION = 'webapp.wsgi.application'
 #}
 
 DATABASES = {
-    'default': {
+   'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'eventmicrodb',
         'USER': 'eventmicroadmin',
         'PASSWORD': 'Buildtech2020',
-        'HOST': 'sp-event-prod.cdwndgtv44ou.ap-southeast-1.rds.amazonaws.com'
+        'HOST': 'speventdb.cdwndgtv44ou.ap-southeast-1.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
 

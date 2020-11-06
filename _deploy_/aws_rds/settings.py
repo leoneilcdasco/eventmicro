@@ -13,7 +13,7 @@ SECRET_KEY = '&ab!3efsouag8#6+vp40r1(9o@rdr!t%0s*k)c2w^$uv3zy#m6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'sp-event-reg.onedash22.com.au', 'www.sp-event-reg.onedash22.com.au', 'django-env.eba-rzdkyskm.ap-southeast-1.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'sessions.spoh21registration.com', 'www.sessions.spoh21registration.com']
 
 
 # Application definition
