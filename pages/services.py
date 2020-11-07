@@ -33,7 +33,8 @@ def send_registration_email(invite):
  
     # Set email parameters
     subject    = '[Singapore Polytechnic] Thank you for registering to our Webinar!'
-    from_email = 'sp-webinar@onedash22.com.au'
+#    from_email = 'sp-webinar@onedash22.com.au'
+    from_email = 'sp-webinar@spoh21registration.com'
     to_email   = [ invite['email'] ]
 
     text_content = invite['invitation']
