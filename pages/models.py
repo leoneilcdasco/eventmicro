@@ -28,6 +28,11 @@ GENDER_CHOICES = (
     ('F', 'Female')
 )
 
+EXTRA_CHOICES = (
+    (0, 'No'),
+    (1, 'Yes')
+)
+
 def event_upload_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/uploads/event_<id>/<filename>
     return 'uploads/event_{0}/{1}'.format(instance.id, filename)
@@ -41,6 +46,8 @@ class School(models.Model):
     photo  = models.ImageField(upload_to=school_upload_path, default='web-defaults/placeholder.png')
     email  = models.CharField(max_length=250, blank=True)
     phone  = models.CharField(max_length=250, blank=True)
+    extra  = models.IntegerField(choices=EXTRA_CHOICES, default=0)
+    appointment = models.TextField(blank=True)
     def __str__(self):
         return self.name
 
@@ -83,7 +90,7 @@ class Participant(models.Model):
     last_name     = models.CharField(max_length=250)
     email         = models.CharField(max_length=250)
     gender        = models.CharField(max_length=5, choices=GENDER_CHOICES, default='-')
-    phone         = models.CharField(max_length=250)
+    phone         = models.CharField(max_length=250, blank=True)
     dob           = models.DateTimeField(default=datetime.now)
     attendees     = models.IntegerField(default=1)
     participant_type  = models.IntegerField(choices=PARTICIPANT_TYPES, default=0)
@@ -111,3 +118,12 @@ class CourseParticipant(models.Model):
     description = models.TextField(blank=True)
     def __str__(self):
         return str(self.course) + '> ' + str(self.participant)
+
+class CourseSession(models.Model):
+    course     = models.ForeignKey(Course, on_delete=models.CASCADE)
+    date       = models.DateField(default=datetime.now)
+    start_time = models.TimeField(blank=True)
+    end_time   = models.TimeField(blank=True)
+    invitation = models.TextField(blank=True)
+    def __str__(self):
+        return str(self.course) + '> ' + str(self.date) + '@' + str(self.start_time)

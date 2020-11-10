@@ -34,6 +34,7 @@
             <div class="invalid-feedback">Please confirm the email</div>
         </div>
     </div>
+<!--
     <div class="form-group row">
         <label for="example-tel-input" class="col-md-3 col-form-label">Tel. No.:</label>
         <div class="col-md-9">
@@ -52,7 +53,7 @@
             <div class="invalid-feedback">Please select date</div>
             </div>
         </div>
-    </div>
+    </div> 
     <div class="form-group row">
         <label for="example-month-input" class="col-md-3 col-form-label">Gender:</label>
         <div class="col-md-9">
@@ -98,12 +99,6 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="example-tel-input" class="col-md-3 col-form-label">Pre-event Questions for Panel Q&A:</label>
-        <div class="col-md-9">
-            <textarea class="form-control" rows="5" name="inquiry" value="{{ values.inquiry }}">{{ values.inquiry }}</textarea>
-        </div>
-    </div>
-    <div class="form-group row">
         <label for="example-month-input" class="col-md-3 col-form-label">Source of new about Info Session:</label>
         <div class="col-md-9">
             <select class="custom-select col-12" id="info_source_id" name="info_source" data-other="info_other_id">
@@ -120,9 +115,12 @@
             <textarea class="form-control" rows="2" name="info_other" value="{{ values.info_other }}">{{ values.info_other }}</textarea>
         </div>
     </div>
+    
+-->
 
+    {% if courses %}
     <div class="form-group row">
-        <label for="example-tel-input" class="col-md-3 col-form-label">Which course in {{ event.school }} are you interested in?</label>
+        <label for="example-tel-input" class="col-md-3 col-form-label">Would you like to attend a Q&A session for one of the following diplomas?</label>
         <div class="col-md-9">
             {% for course in courses %}
             <div>
@@ -135,5 +133,20 @@
             </div>
             {% endfor %}
         </div>
+
+        <div class="col-md-3"></div>
+        <div class="col-md-9 text-warning">
+            <hr/>
+            (The Q&A session will be held after the info Session via a Zoom chat. You will receive a link to the Q&A session via email. You may select more than one diploma.)
+        </div>        
     </div>
+
+    <div class="form-group row">
+        <label for="example-tel-input" class="col-md-3 col-form-label">Pre-event Questions for Panel Q&A:</label>
+        <div class="col-md-9">
+            <textarea class="form-control" rows="5" name="inquiry" value="{{ values.inquiry }}">{{ values.inquiry }}</textarea>
+        </div>
+    </div>
+    {% endif %}
+
 </form>

@@ -50,11 +50,15 @@ def booking1(request):
 
     calendar = start_date
     while calendar <= end_date:
-        events = Event.objects.filter(date=calendar).order_by('date', 'start_time')
+        school_events = Event.objects.filter(date=calendar, school__extra=0).order_by('date', 'start_time')
+        extra_events  = Event.objects.filter(date=calendar, school__extra=1).order_by('date', 'start_time')
+
+        events = list(school_events) + list(extra_events)
         if events:
             session = { 'day'     : date_text(calendar),
                         'events'  : events }
             event_list.append(session)
+
         calendar += delta
 
     context = { 'event_list' : event_list }
@@ -74,13 +78,29 @@ def booking2(request):
 # -----------------------------------------------------------------------------
 # Render booking for course counselor
 # -----------------------------------------------------------------------------
-def booking3(request):
+def booking3(request, __id__=0):
     print('DEBUG>>> booking1(): rendering page for info session')
     context = {}
 
     #TODO count access log
+    
+    school = School.objects.filter(id=__id__).first()
+    context = { 'school' : school }
 
     return render(request, 'book_course_counselor.html', context)
+
+# -----------------------------------------------------------------------------
+# Render schools for course counselor selection
+# -----------------------------------------------------------------------------
+def schools(request):
+    print('DEBUG>>> schools(): rendering page for schools')
+    context = {}
+
+    #TODO count access log
+    schools = School.objects.filter(extra=0).all()
+
+    context = { 'schools' : schools }
+    return render(request, 'schools.html', context)
 
 # -----------------------------------------------------------------------------
 # Check blank string data
@@ -109,16 +129,18 @@ def register(request):
             last_name     = request.POST['last_name']
             email         = request.POST['email']
             email_verify  = request.POST['email_verify']
-            phone         = request.POST['phone']
-            dob           = request.POST['dob']
-            gender        = request.POST['gender']
-            participant_type  = request.POST['participant_type']
-            participant_other = request.POST['participant_other']
-            attendees     = request.POST['attendees']
-            inquiry       = request.POST['inquiry']
-            info_source   = request.POST['info_source']
-            info_other    = request.POST['info_other']
             courses       = request.POST.getlist('course')
+            inquiry       = request.POST['inquiry']
+
+            #phone         = request.POST['phone']
+            #dob           = request.POST['dob']
+            #gender        = request.POST['gender']
+            #participant_type  = request.POST['participant_type']
+            #participant_other = request.POST['participant_other']
+            #attendees     = request.POST['attendees']
+            #info_source   = request.POST['info_source']
+            #info_other    = request.POST['info_other']
+
 
             if courses:
                 context['course_ids'] = [ int(i) for i in courses ]
@@ -152,35 +174,36 @@ def register(request):
                 print('5 >> email <> email_verify')
                 err_fno = 5
                 raise Exception("Invalid data exception")
-            if isBlank(phone):
-                print('6 >> phone = ' + phone)
-                err_fno = 6
-                raise Exception("No data exception")
-            if isBlank(dob):
-                print('7 >> dob = ' + dob)
-                err_fno = 7
-                raise Exception("No data exception")
-            if isBlank(gender) or gender == '-':
-                print('8 >> gender = ' + gender)
-                err_fno = 8
-                raise Exception("Invalid data exception")
-            if int(participant_type) == 0:
-                print('9 >> participant_type =' +  participant_type)
-                err_fno = 9
-                raise Exception("Invalid data exception")
-            if int(attendees) == 0:
-                print('10 >> attendees =' +  attendees)
-                err_fno = 10
-                raise Exception("Invalid data exception")
+            #if isBlank(phone):
+            #    print('6 >> phone = ' + phone)
+            #    err_fno = 6
+            #    raise Exception("No data exception")
+            #if isBlank(dob):
+            #    print('7 >> dob = ' + dob)
+            #    err_fno = 7
+            #    raise Exception("No data exception")
+            #if isBlank(gender) or gender == '-':
+            #    print('8 >> gender = ' + gender)
+            #    err_fno = 8
+            #    raise Exception("Invalid data exception")
+            #if int(participant_type) == 0:
+            #    print('9 >> participant_type =' +  participant_type)
+            #    err_fno = 9
+            #    raise Exception("Invalid data exception")
+            #if int(attendees) == 0:
+            #    print('10 >> attendees =' +  attendees)
+            #    err_fno = 10
+            #    raise Exception("Invalid data exception")
 
-            dob_date = datetime.strptime(dob, '%Y-%m-%d')
+            #dob_date = datetime.strptime(dob, '%Y-%m-%d')
             
             if event:
-                new_values = {  'phone' : phone, 'dob' : dob_date, 'gender' : gender, 'question' : inquiry, 
-                                'participant_type' : participant_type, 'participant_other' : participant_other, 
-                                'infosource_type' : info_source, 'infosource_other' : info_other, 
-                                'attendees' : attendees, 'interested_in' : interested_in,  }
+                #new_values = {  'phone' : phone, 'dob' : dob_date, 'gender' : gender, 'question' : inquiry, 
+                #                'participant_type' : participant_type, 'participant_other' : participant_other, 
+                #                'infosource_type' : info_source, 'infosource_other' : info_other, 
+                #                'attendees' : attendees, 'interested_in' : interested_in,  }
 
+                new_values = {  'question' : inquiry, 'interested_in' : interested_in  }
                 participant, created = Participant.objects.update_or_create( event=event, first_name=first_name, 
                                                     last_name=last_name, email=email,  defaults=new_values)
 
