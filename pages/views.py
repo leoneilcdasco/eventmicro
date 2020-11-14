@@ -211,7 +211,11 @@ def register(request):
                 for course_id in courses:
                     course = Course.objects.filter(id=course_id).first()
                     course_participant, created = CourseParticipant.objects.get_or_create(course=course, participant=participant)
-                    course_invites.append(course.invitation)
+
+                    # Get session invitation link for the course
+                    invite = CourseEvent.objects.filter(event=event, course=course).first()
+                    if invite:
+                        course_invites.append(invite.invitation)
                 
                 #Send email invite
                 invite = {  'date'       : event.date,

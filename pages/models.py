@@ -67,7 +67,7 @@ class Event(models.Model):
     start_time = models.TimeField(blank=True)
     end_time   = models.TimeField(blank=True)
     organizer  = models.CharField(max_length=250, blank=True)
-    tagline    = models.CharField(max_length=512)
+    tagline    = models.CharField(max_length=512, blank=True)
     details    = models.TextField(blank=True)
     invitation = models.TextField(blank=True)
     def __str__(self):
@@ -119,11 +119,9 @@ class CourseParticipant(models.Model):
     def __str__(self):
         return str(self.course) + '> ' + str(self.participant)
 
-class CourseSession(models.Model):
+class CourseEvent(models.Model):
     course     = models.ForeignKey(Course, on_delete=models.CASCADE)
-    date       = models.DateField(default=datetime.now)
-    start_time = models.TimeField(blank=True)
-    end_time   = models.TimeField(blank=True)
+    event      = models.ForeignKey(Event, on_delete=models.CASCADE)
     invitation = models.TextField(blank=True)
     def __str__(self):
-        return str(self.course) + '> ' + str(self.date) + '@' + str(self.start_time)
+        return str(self.course) + '> ' + str(self.event)
