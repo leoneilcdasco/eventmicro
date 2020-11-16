@@ -117,6 +117,7 @@ def register(request):
     error   = False
     err_fno = 0
     status  = 200
+    event   = None
 
     # POST request save data
     if request.method == 'POST':
@@ -130,7 +131,7 @@ def register(request):
             email         = request.POST['email']
             email_verify  = request.POST['email_verify']
             courses       = request.POST.getlist('course')
-            inquiry       = request.POST['inquiry']
+            inquiry       = request.POST.get('inquiry', '')
 
             #phone         = request.POST['phone']
             #dob           = request.POST['dob']
@@ -145,6 +146,8 @@ def register(request):
             if courses:
                 context['course_ids'] = [ int(i) for i in courses ]
                 interested_in = ','.join(courses)
+            else:
+                interested_in = ''
             
             # Perform input validation
             if isBlank(event_id):
@@ -219,7 +222,8 @@ def register(request):
                 
                 #Send email invite
                 invite = {  'date'       : event.date,
-                            'time'       : event.start_time,
+                            's_time'     : event.start_time,
+                            'e_time'     : event.end_time,
                             'calendar'   : event.calendar_time(),
                             'name'       : str(participant.first_name + ' ' + participant.last_name), 
                             'invitation' : event.invitation,
