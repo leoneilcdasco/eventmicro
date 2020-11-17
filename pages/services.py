@@ -17,7 +17,7 @@ def invitation_links(invite):
     links = ''
     invitation = invite['invitation'] + '<hr>'
     for link in invite['course_invites']:
-        links = links + '<br>' + link
+        links = links + '<br><br>' + link
     invite['invitation'] = invitation + links
     return invite
 
