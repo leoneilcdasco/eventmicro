@@ -63,7 +63,8 @@ def send_registration_email_plain(invite):
     context= { 'domain' : domain, 'invite' : invite, 'course_invites' : invite['course_invites'] }
  
     # Set email parameters
-    subject    = 'Link to Singapore Polytechnic Open House Info Session'
+    subject    = 'Singapore Polytechnic Open House 2021 – Info Session'
+    #subject    = 'Singapore Polytechnic Open House 2021 – Info Session (Parents’ Forum)'
 #    from_email = 'sp-webinar@onedash22.com.au'
     from_email = 'sp-webinar@spoh21registration.com'
     to_email   = [ invite['email'] ]
