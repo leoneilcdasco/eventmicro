@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Singapore Polytechnic Webinar</title>
+</head>
+<body style="margin: 0; padding: 0;">
+
+<div style="padding: 10px 0 30px 0;font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+{% autoescape off %}
+
+<pre style="font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+Hi {{ invite.name }},
+
+Thank you for registering for the Singapore Polytechnic Open Day Live Info Sessions. 
+
+You have selected to attend the info session for {{ invite.school }} on <b>{{ invite.date|date:'M d, Y'|upper}}</b> at <b>{{ invite.s_time }} ~ {{ invite.e_time }}</b>.
+
+
+Here is a link to the Live Info Session. Click on the link at the given date and time.
+
+{{ invite.link1 }}    
+
+To add this session to your calendar, download the .ics file and import it into your calendar of choice. If you have trouble entering the Info Session, the streams will also be beamed on our main Open <a href="http://xxxx/house"> House </a> page at the given date and time.
+
+You have also selected to attend a Q&A breakout session for the following {{ session_type }}. Q&A breakout sessions will commence after each Live Info Session. Here is a link to the Q&A breakout Session.
+
+{{ invite.link2 }}
+
+</pre>
+
+Here are other Q&A breakout sessions for other diplomas that you may be interested in;<br><br>
+{% for invitation in course_invites %}
+    {% if invitation.is_selected %}
+    <mark><b>{{ invitation.name }}</b></mark> : {% else %} {{ invitation.name }} :
+    {% endif %}
+    <br>
+    {{ invitation.link }}
+    <br>
+    <br>
+{% endfor %}
+
+<br>
+If you have any queries feel free to email us at contact-us@sp.com.sg and we will get back to you shortly. Thank you and we hope you enjoy Singapore Polytechnic's Open House 2021.
+<br>
+<br>
+<hr>
+<a href="https://www.sp.edu.sg">https://www.sp.edu.sg</a>
+
+
+{% endautoescape %} 
+</div>
+
+</body>
+</html>

@@ -22,23 +22,54 @@ def invitation_links(invite):
     return invite
 
 # -----------------------------------------------------------------------------
-# Sends email webinar registration 
+# Sends email webinar registration (HTML)
 # -----------------------------------------------------------------------------
 def send_registration_email(invite):
     print('DEBUG>>> send_registration_email(): sending email')
 
     # Site domain setting
     domain = 'https://' + str(Site.objects.get_current())
-    context= { 'domain' : domain, 'invite' : invitation_links(invite) }
+    context= { 'domain' : domain, 'invite' : invite, 'course_invites' : invite['course_invites'] }
  
     # Set email parameters
-    subject    = '[Singapore Polytechnic] Thank you for registering to our Webinar!'
+    subject    = 'Link to Singapore Polytechnic Open House Info Session'
 #    from_email = 'sp-webinar@onedash22.com.au'
     from_email = 'sp-webinar@spoh21registration.com'
     to_email   = [ invite['email'] ]
 
     text_content = invite['invitation']
     html_content = render_to_string('email_invite.html', context)
+
+    msg = EmailMultiAlternatives(subject, text_content, from_email, to_email )
+    msg.attach_alternative(html_content, "text/html")
+
+    # Prepare ICS attachment
+    icalstream = create_ics_reminder(invite)
+    part = MIMEText(icalstream,'calendar')
+    part.add_header('Filename','sp-event-reminder.ics') 
+    part.add_header('Content-Disposition','attachment; filename=sp-event-reminder.ics') 
+
+    msg.attach(part)
+    msg.send()
+
+# -----------------------------------------------------------------------------
+# Sends email webinar registration (PLAIN)
+# -----------------------------------------------------------------------------
+def send_registration_email_plain(invite):
+    print('DEBUG>>> send_registration_email(): sending email')
+
+    # Site domain setting
+    domain = 'https://' + str(Site.objects.get_current())
+    context= { 'domain' : domain, 'invite' : invite, 'course_invites' : invite['course_invites'] }
+ 
+    # Set email parameters
+    subject    = 'Link to Singapore Polytechnic Open House Info Session'
+#    from_email = 'sp-webinar@onedash22.com.au'
+    from_email = 'sp-webinar@spoh21registration.com'
+    to_email   = [ invite['email'] ]
+
+    text_content = invite['invitation']
+    html_content = render_to_string('email_invite_plain.html', context)
 
     msg = EmailMultiAlternatives(subject, text_content, from_email, to_email )
     msg.attach_alternative(html_content, "text/html")

@@ -69,6 +69,9 @@ class Event(models.Model):
     organizer  = models.CharField(max_length=250, blank=True)
     tagline    = models.CharField(max_length=512, blank=True)
     details    = models.TextField(blank=True)
+    link1      = models.TextField(blank=True)
+    link2      = models.TextField(blank=True)
+    link3      = models.TextField(blank=True)
     invitation = models.TextField(blank=True)
     def __str__(self):
         return self.name

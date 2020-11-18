@@ -210,18 +210,28 @@ def register(request):
                 participant, created = Participant.objects.update_or_create( event=event, first_name=first_name, 
                                                     last_name=last_name, email=email,  defaults=new_values)
 
-                course_invites = []
                 for course_id in courses:
                     course = Course.objects.filter(id=course_id).first()
                     course_participant, created = CourseParticipant.objects.get_or_create(course=course, participant=participant)
 
-                    # Get session invitation link for the course
-                    invite = CourseEvent.objects.filter(event=event, course=course).first()
-                    if invite:
-                        course_invites.append(invite.invitation)
+                # Get session invitation link for the course
+                course_invites = []
+                invites = CourseEvent.objects.filter(event=event).all()
+                for invite in invites:
+                    invitation = {}
+                    invitation['name'] = invite.course.name
+                    invitation['link'] = invite.course.invitation 
+                    if str(invite.course.id) in courses:
+                        invitation['is_selected'] = True
+                    course_invites.append(invitation)
                 
+                session_type = "Diplomas"
+                if event.school.extra == 1:
+                    session_type = "Specialization"
+
                 #Send email invite
                 invite = {  'date'       : event.date,
+                            'school'     : event.school,
                             's_time'     : event.start_time,
                             'e_time'     : event.end_time,
                             'calendar'   : event.calendar_time(),
@@ -231,10 +241,14 @@ def register(request):
                             'details'    : event.details,
                             'photo'      : event.photo,
                             'email'      : participant.email,
+                            'session_type' : session_type,
+                            'link1'      : event.link1,
+                            'link2'      : event.link2,
+                            'link3'      : event.link3,
                             'course_invites' : course_invites }
 
                 context['invite'] = invite
-                send_registration_email(invite)
+                send_registration_email_plain(invite)
                 
         except:
             error = True
@@ -272,7 +286,10 @@ def invite(request):
 
     course_invites = [ 'Link 1', 'Link 2', 'Link 3' ]
 
-    invite = {  'start_date' : datetime.today(),
+    invite = {  'date' : datetime.today(),
+                'school'     : 'SCHOOL OF XXX ',
+                's_time'     : '1:00 PM',
+                'e_time'     : '2:00 PM',
                 'calendar'   : {'start' : start, 'end' : end },
                 'name'       : 'Sirhc Someroda', 
                 'invitation' : 'Zoom invite here https://zoom/meeting/1245',
@@ -280,9 +297,13 @@ def invite(request):
                 'details'    : 'The quick brown fox jump over the lazy dog near the bank of the river.',
                 'photo'      : 'web-defaults/placeholder.png',
                 'email'      : 'sirhcsomeroda@gmail.com',
+                'session_type' : 'Diplomas',
+                'link1'      : 'http://link1/vimeo',
+                'link2'      : 'http://link2/zoom',
+                'link3'      : 'http://link3/zoom',
                 'course_invites' : course_invites }
 
     context = { 'invite' : invite }
-    send_registration_email(invite)
+    send_registration_email_plain(invite)
 
-    return render(request, 'email_invite.html', context)
+    return render(request, 'email_invite_plain.html', context)
