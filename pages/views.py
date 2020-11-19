@@ -220,7 +220,7 @@ def register(request):
                 for invite in invites:
                     invitation = {}
                     invitation['name'] = invite.course.name
-                    invitation['link'] = invite.course.invitation 
+                    invitation['link'] = invite.invitation
                     if str(invite.course.id) in courses:
                         invitation['is_selected'] = True
                     course_invites.append(invitation)
