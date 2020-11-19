@@ -24,36 +24,43 @@ To add this session to your calendar, download the .ics file and import it into 
 
 If you have trouble entering the Info Session using the link, the Info Session will also be livestreamed on our Open House microsite (openhouse.sp.edu.sg) at the given date and time.
 
-<b>Q&A Breakout Session </b>
-
-You have also selected to attend a Q&A breakout session for the following SP course : {{ session_type }}
 </pre>
-{% for invitation in course_invites %}
-    {% if invitation.is_selected %}
-    <b>{{ invitation.name }}</b> : 
+
+{% if course_invites %}
+    <b>Q&A Breakout Session </b>
+
+    You have also selected to attend a Q&A breakout session for the following SP course : {{ invite.session_type }}
     <br>
-    {{ invitation.link }}
     <br>
-    {% else %} 
-    {% endif %}
-{% endfor %}
+
+    {% for invitation in course_invites %}
+        {% if invitation.is_selected %}
+        <b>{{ invitation.name }}</b> : 
+        <br>
+        {{ invitation.link }}
+        <br>
+        <br>
+        {% else %} 
+        {% endif %}
+    {% endfor %}
+
+    <br>
+    Here are other Q&A breakout sessions for other diplomas that you may be interested in;
+    <br>
+    <br>
+
+    {% for invitation in course_invites %}
+        {% if not invitation.is_selected %}
+        <b>{{ invitation.name }}</b> :
+        <br>
+        {{ invitation.link }}
+        <br>
+        <br>
+        {% endif %}
+    {% endfor %}
+{% endif %}
 
 <br>
-Here are other Q&A breakout sessions for other diplomas that you may be interested in;
-<br>
-<br>
-
-{% for invitation in course_invites %}
-    {% if invitation.is_selected %}
-    {% else %} 
-    <b>{{ invitation.name }}</b> :
-    <br>
-    {{ invitation.link }}
-    <br>
-    <br>
-    {% endif %}
-{% endfor %}
-
 If you have any queries regarding SP Open House 2021, please email us at schoolrelations@sp.edu.sg. 
 <br>
 <br>

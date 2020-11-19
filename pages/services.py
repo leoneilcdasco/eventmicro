@@ -10,6 +10,14 @@ from django.template.loader import render_to_string
 
 from email.mime.text import MIMEText
 
+SUBJECT_DEFAULT = 'Link to Singapore Polytechnic Open House - Info Session'
+
+# -----------------------------------------------------------------------------
+# Check blank string data
+# -----------------------------------------------------------------------------
+def isBlank (data):
+    return not (data and data.strip())
+
 # -----------------------------------------------------------------------------
 # Append invitation links 
 # -----------------------------------------------------------------------------
@@ -32,12 +40,11 @@ def send_registration_email(invite):
     context= { 'domain' : domain, 'invite' : invite, 'course_invites' : invite['course_invites'] }
  
     # Set email parameters
-    subject    = 'Link to Singapore Polytechnic Open House Info Session'
-#    from_email = 'sp-webinar@onedash22.com.au'
+    subject    = SUBJECT_DEFAULT if isBlank(invite['subject']) else invite['subject']
     from_email = 'sp-webinar@spoh21registration.com'
     to_email   = [ invite['email'] ]
 
-    text_content = invite['invitation']
+    text_content = invite['details']
     html_content = render_to_string('email_invite.html', context)
 
     msg = EmailMultiAlternatives(subject, text_content, from_email, to_email )
@@ -63,13 +70,11 @@ def send_registration_email_plain(invite):
     context= { 'domain' : domain, 'invite' : invite, 'course_invites' : invite['course_invites'] }
  
     # Set email parameters
-    subject    = 'Singapore Polytechnic Open House 2021 – Info Session'
-    #subject    = 'Singapore Polytechnic Open House 2021 – Info Session (Parents’ Forum)'
-#    from_email = 'sp-webinar@onedash22.com.au'
+    subject    = SUBJECT_DEFAULT if isBlank(invite['subject']) else invite['subject']
     from_email = 'sp-webinar@spoh21registration.com'
     to_email   = [ invite['email'] ]
 
-    text_content = invite['invitation']
+    text_content = invite['details']
     html_content = render_to_string('email_invite_plain.html', context)
 
     msg = EmailMultiAlternatives(subject, text_content, from_email, to_email )

@@ -72,7 +72,7 @@ class Event(models.Model):
     link1      = models.TextField(blank=True)
     link2      = models.TextField(blank=True)
     link3      = models.TextField(blank=True)
-    invitation = models.TextField(blank=True)
+    invitation = models.TextField(blank=True, default='Singapore Polytechnic Open House 2021 – Info Session')
     def __str__(self):
         return self.name
     def calendar_time(self):

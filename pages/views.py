@@ -229,6 +229,9 @@ def register(request):
                 if event.school.extra == 1:
                     session_type = "Specialization"
 
+                if len(course_invites) == 0:
+                    course_invites = None
+
                 #Send email invite
                 invite = {  'date'       : event.date,
                             'school'     : event.school,
@@ -236,7 +239,7 @@ def register(request):
                             'e_time'     : event.end_time,
                             'calendar'   : event.calendar_time(),
                             'name'       : str(participant.first_name + ' ' + participant.last_name), 
-                            'invitation' : event.invitation,
+                            'subject'    : event.invitation,
                             'tagline'    : event.tagline,
                             'details'    : event.details,
                             'photo'      : event.photo,
