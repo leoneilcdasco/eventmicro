@@ -173,7 +173,8 @@
                         </div>
                         <div class="card-body bg-light">
                             <h3 class="card-title">{{event.start_time|date:'P'|upper}} - {{event.end_time|date:'P'|upper}}</h3>
-                             <p><span class="text-dark"> {{ event.tagline }} </span> </p>
+                            <p class="card-text"><span class="text-dark"> {{ event.tagline }} </span> </p>
+                            <p class="card-text"><span class="text-dark"> </span> </p>
                         </div>
                         <div class="bg-light">
                             <button class="btn btn-danger waves-effect waves-light webinar_btn" data-toggle="modal" data-event-id="{{ event.id }}"
