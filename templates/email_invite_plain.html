@@ -34,9 +34,20 @@ You have also selected to attend a Q&A breakout session for the following SP cou
     <b>{{ invitation.name }}</b> : 
     <br>
     {{ invitation.link }}
+
+    {% else %} 
+
+    {% endif %}
+
     <br>
-    Here are other Q&A breakout sessions for other diplomas that you may be interested in;
-    <br>
+{% endfor %}
+
+Here are other Q&A breakout sessions for other diplomas that you may be interested in;
+<br>
+
+{% for invitation in course_invites %}
+    {% if invitation.is_selected %}
+
     {% else %} 
     <b>{{ invitation.name }}</b> :
     <br>
@@ -61,7 +72,6 @@ Thank you and we look forward to you joining us at SP Open House 2021.
 SP Open House 2021 Organising Committee
 <br>
 <a href="https://www.sp.edu.sg">https://www.sp.edu.sg</a>
-
 
 {% endautoescape %} 
 </div>
