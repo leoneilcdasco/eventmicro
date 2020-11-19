@@ -27,7 +27,6 @@ If you have trouble entering the Info Session using the link, the Info Session w
 <b>Q&A Breakout Session </b>
 
 You have also selected to attend a Q&A breakout session for the following SP course : {{ session_type }}
-
 </pre>
 
 {% for invitation in course_invites %}
@@ -37,9 +36,9 @@ You have also selected to attend a Q&A breakout session for the following SP cou
     {{ invitation.link }}
     <br>
     Here are other Q&A breakout sessions for other diplomas that you may be interested in;
-
+    <br>
     {% else %} 
-    {{ invitation.name }} :
+    <b>{{ invitation.name }}</b> :
     <br>
     {{ invitation.link }}
     <br>
@@ -48,10 +47,11 @@ You have also selected to attend a Q&A breakout session for the following SP cou
     <br>
 {% endfor %}
 
-<br>
 If you have any queries regarding SP Open House 2021, please email us at schoolrelations@sp.edu.sg. 
 <br>
+<br>
 For enquiries regarding our academic schools, please email contactus@sp.edu.sg.
+<br>
 <br>
 Thank you and we look forward to you joining us at SP Open House 2021.
 
