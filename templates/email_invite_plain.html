@@ -28,33 +28,29 @@ If you have trouble entering the Info Session using the link, the Info Session w
 
 You have also selected to attend a Q&A breakout session for the following SP course : {{ session_type }}
 </pre>
-
 {% for invitation in course_invites %}
     {% if invitation.is_selected %}
     <b>{{ invitation.name }}</b> : 
     <br>
     {{ invitation.link }}
-
     {% else %} 
-
     {% endif %}
-
     <br>
 {% endfor %}
 
+<br>
 Here are other Q&A breakout sessions for other diplomas that you may be interested in;
+<br>
 <br>
 
 {% for invitation in course_invites %}
     {% if invitation.is_selected %}
-
     {% else %} 
     <b>{{ invitation.name }}</b> :
     <br>
     {{ invitation.link }}
     <br>
     {% endif %}
-
     <br>
 {% endfor %}
 
