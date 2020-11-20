@@ -19,7 +19,11 @@
       max-width: 1600px;
       padding: 0 10px !important;
       margin: 0 15px !important;
-  }
+    }
+
+    .register_btn {
+      margin: 20px 20px 20px 20px;
+    }
   </style>
 {% endblock %}
 
@@ -76,41 +80,66 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3 d-flex align-items-stretch">
                     <!-- Card -->
                     <div class="card">
                         <img class="card-img-top img-fluid" src="/media/webinar/InfoSession.jpg" alt="Card image cap">
                         <div class="card-body">
                             <h2 class="card-title">Info Session</h2>
                             <p class="card-text">Register for our Live Info Sessions to find out more about our courses from our academic schools.</p>
-                            <a href="{% url 'booking1' %}" class="btn btn-danger">ENTER</a>
+                        </div>
+                        <div class="bg-light">
+                          <a href="{% url 'booking1' %}" class="btn btn-danger register_btn">ENTER</a>
                         </div>
                     </div>
                     <!-- Card -->
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3 d-flex align-items-stretch">
                   <!-- Card -->
                   <div class="card">
                       <img class="card-img-top img-fluid" src="/media/webinar/CourseCounselor.jpg" alt="Card image cap">
                       <div class="card-body">
                           <h2 class="card-title">Course Counselling</h2>
                           <p class="card-text">Book a spot for a one-on-one chat with our academic staff to have your questions about our courses answered.</p>
-                          <a href="{% url 'schools' %}" class="btn btn-danger">ENTER</a>
+                      </div>
+                      <div class="bg-light">
+                        <a href="{% url 'schools' %}" class="btn btn-danger register_btn">ENTER</a>
                       </div>
                   </div>
                   <!-- Card -->
               </div>
-                <div class="col-md-4">
+                <div class="col-md-3 d-flex align-items-stretch">
                     <!-- Card -->
                     <div class="card">
                         <img class="card-img-top img-fluid" src="/media/webinar/GuidanceCounselor.jpg" alt="Card image cap">
                         <div class="card-body">
                             <h2 class="card-title">Education and Career Counselling</h2>
                             <p class="card-text">Book a spot for a one-on-one chat with our Education and Career Guidance Counsellors if you have questions about general education and career choices.</p>
-                            <a href="{% url 'booking2' %}" class="btn btn-danger">ENTER</a>
+                        </div>
+                        <div class="bg-light">
+                          <a href="{% url 'booking2' %}" class="btn btn-danger register_btn">ENTER</a>
                         </div>
                     </div>
                     <!-- Card -->
+                </div>
+                <div class="col-md-3 d-flex align-items-stretch">
+                  <!-- Card -->
+                  <div class="card">
+                      <img class="card-img-top img-fluid" src="/media/webinar/InfoSession.jpg" alt="Card image cap">
+                      <div class="card-body">
+                          <h2 class="card-title">Shows & Seminar</h2>
+                          <p class="card-text">Register for the following informative and engaging programmes:</p>
+                          <ul>
+                            <li>Engineering Show</li>
+                            <li>Polytechnic Foundation Programme (PFP) Seminar</li>
+                            <li>The MAD Show by students from the Media, Arts and Design School</li>
+                          </ul>
+                      </div>
+                      <div class="bg-light">
+                        <a href="{% url 'booking4' %}" class="btn btn-danger register_btn">ENTER</a>
+                      </div>
+                  </div>
+                  <!-- Card -->
                 </div>
             </div>
 

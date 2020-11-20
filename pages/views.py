@@ -39,7 +39,7 @@ def index(request):
 # Render booking for live info session
 # -----------------------------------------------------------------------------
 def booking1(request):
-    print('DEBUG>>> booking3(): rendering page for course counselor')
+    print('DEBUG>>> booking3(): rendering page for info session')
     
     #TODO count access log
 
@@ -51,12 +51,9 @@ def booking1(request):
     calendar = start_date
     while calendar <= end_date:
         school_events = Event.objects.filter(date=calendar, school__extra=0).order_by('date', 'start_time')
-        extra_events  = Event.objects.filter(date=calendar, school__extra=1).order_by('date', 'start_time')
-
-        events = list(school_events) + list(extra_events)
-        if events:
+        if school_events:
             session = { 'day'     : date_text(calendar),
-                        'events'  : events }
+                        'events'  : school_events }
             event_list.append(session)
 
         calendar += delta
@@ -79,7 +76,7 @@ def booking2(request):
 # Render booking for course counselor
 # -----------------------------------------------------------------------------
 def booking3(request, __id__=0):
-    print('DEBUG>>> booking1(): rendering page for info session')
+    print('DEBUG>>> booking1(): rendering page for course counselor')
     context = {}
 
     #TODO count access log
@@ -88,6 +85,32 @@ def booking3(request, __id__=0):
     context = { 'school' : school }
 
     return render(request, 'book_course_counselor.html', context)
+
+# -----------------------------------------------------------------------------
+# Render booking for shows and seminar
+# -----------------------------------------------------------------------------
+def booking4(request):
+    print('DEBUG>>> booking4(): rendering page for shows & seminar')
+
+    #TODO count access log
+
+    start_date = REG_START_DATE
+    end_date   = REG_END_DATE
+    delta      = timedelta(days=1)
+    event_list = []
+
+    calendar = start_date
+    while calendar <= end_date:
+        extra_events  = Event.objects.filter(date=calendar, school__extra=1).order_by('date', 'start_time')
+        if extra_events:
+            session = { 'day'     : date_text(calendar),
+                        'events'  : extra_events }
+            event_list.append(session)
+
+        calendar += delta
+
+    context = { 'event_list' : event_list }
+    return render(request, 'book_shows_seminar.html', context)
 
 # -----------------------------------------------------------------------------
 # Render schools for course counselor selection
