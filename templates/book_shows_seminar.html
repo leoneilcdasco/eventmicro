@@ -145,17 +145,17 @@
             <div class="row">
               <div class="col-md-12">
                 <h2>
-                  WELCOME TO <span class="text-danger">SP's OPEN HOUSE</span> SCHOOL <span class="text-warning"><u>SHOWS AND SEMINAR</u></span> REGISTRATION SITE
+                  Welcome to <span class="text-danger">SP Open House's</span> <span class="text-warning"><u>POLY FOUNDATION PROGRAMME (PFP) Seminar, ENGINEERING SHOW and The MAD MAD SHOW Registration</u></span> page.
                 </h2>
                 <p>
-                  To register for a show or seminar simply click on the timeslot that you are available and a registration screen will appear. You may register for more than one info session.
+                  Register for the show or seminar that interest you by selecting from the list below.
                 </p>
               </div>
             </div>
 
            {% for session in event_list %}
             <hr>
-            <h3 class="text-danger">{{ session.day|upper }}</h3>
+            <h3 class="text-danger">{{ session.day }}</h3>
             <!-- ROW Cards -->
             <div class="row">
                 {% for event in session.events%}

@@ -23,8 +23,8 @@ REG_END_DATE   = datetime(2021, 12, 31)
 # -----------------------------------------------------------------------------
 def date_text(date):
     year  = date.year
-    day   = ordinal(date.day)
-    month = date.strftime('%b').upper()
+    day   = date.day
+    month = date.strftime('%B')
     return ('%s %s %s' % (day, month, year))
 
 # -----------------------------------------------------------------------------

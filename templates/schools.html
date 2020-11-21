@@ -116,10 +116,10 @@
             <div class="row">
               <div class="col-md-12">
                 <h2>
-                  WELCOME TO <span class="text-danger">SP's OPEN HOUSE</span> SCHOOL <span class="text-warning"><u>COURSE COUNCILOR</u></span> APPOINTMENT PAGE
+                  Welcome to <span class="text-danger">SP Open House's</span> <span class="text-warning"><u>COURSE COUNSELLING, ADMISSIONS, SCHOLARSHIPS & FINANCIAL MATTERS and CONTINUING EDUCATION & TRAINING Appointment</u></span> page.
                 </h2>
                 <p>
-                  To register for a one-on-one chat with a Course Counselor, simply click on the school you’re interested in.
+                  Book a spot for a one-on-one chat with our academic staff to have your questions about our courses answered. Our staff will also be on hand to answer any question regarding admissions and programmes for adult learners.
                 </p>
               </div>
             </div>
@@ -128,7 +128,30 @@
             <!-- ROW Cards -->
             <div class="row">
                 {% for school in schools%}
-                <div class="col-md-3 mb-4">
+                <div class="col-md-3 mb-4 align-items-stretch">
+                  <div class="card h-100 text-white border-1">
+                      <div class="card-header bg-dark">
+                          <div class="d-flex no-block align-items-center">
+                              <div>
+                                  <h3 class="mb-0 text-white">{{ school }}</h3>
+                              </div>
+                              <div class="ml-auto">
+                                  <span class="display-7"><i class="ti-headphone-alt"></i></span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-body bg-light">
+                          <p class="card-text"><span class="text-dark"> {{ school.phone }} </span> </p>
+                          <p class="card-text"><span class="text-dark"> </span> </p>
+                      </div>
+                      <div class="bg-light">
+                          <!-- <button class="btn btn-danger waves-effect waves-light webinar_btn" data-toggle="modal" data-event-id="{{ event.id }}"
+                          data-target="#reg-dialog">REGISTER</button>  -->
+                          <a href="{% url 'booking3' school.id %}" class="btn btn-danger waves-effect waves-light mt-1 webinar_btn">BOOKING</a>
+                      </div>
+                  </div>
+              </div>
+                <!-- <div class="col-md-3 mb-4">
                     <div class="card text-white border-0">
                         <img class="card-img" src="/media/{{ school.photo }}" alt="Card image">
                         <div class="card-img-overlay text-white">
@@ -138,7 +161,7 @@
                         </div>    
                         <a href="{% url 'booking3' school.id %}" class="btn btn-danger waves-effect waves-light mt-1 webinar_btn">BOOKING</a>
                     </div>
-                </div>
+                </div> -->
                 {% endfor %}
             </div>
             <!-- /ROW Cards -->
