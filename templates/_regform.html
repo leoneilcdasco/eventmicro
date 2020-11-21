@@ -124,7 +124,7 @@
         <div class="col-md-9">
             {% for course in courses %}
             <div>
-                <input type="checkbox" name="course" id="course_check" value="{{ course.id }}" class="material-inputs chk-col-red" 
+                <input type="checkbox" name="course" id="course_check" value="{{ course.id }}" class="material-inputs chk-col-red course_check" 
                 {% if course.id in course_ids %}
                     checked
                 {% endif %}

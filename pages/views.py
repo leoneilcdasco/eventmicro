@@ -316,6 +316,7 @@ def invite(request):
                 'school'     : 'SCHOOL OF XXX ',
                 's_time'     : '1:00 PM',
                 'e_time'     : '2:00 PM',
+                'subject'    : 'Test invite subject',
                 'calendar'   : {'start' : start, 'end' : end },
                 'name'       : 'Sirhc Someroda', 
                 'invitation' : 'Zoom invite here https://zoom/meeting/1245',

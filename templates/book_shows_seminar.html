@@ -406,6 +406,12 @@
                     }	
                   });
             }); 
+        
+            $(document).on('click', '.course_check', function (e) {
+                $('.course_check').prop("checked", false);
+                $(this).prop("checked", true);
+            });
+  
         })(jQuery);
 
     </script>
