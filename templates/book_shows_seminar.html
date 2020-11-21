@@ -172,7 +172,7 @@
                             </div>
                         </div>
                         <div class="card-body bg-light">
-                            <h3 class="card-title">{{event.start_time|date:'P'|upper}} - {{event.end_time|date:'P'|upper}}</h3>
+                            <h3 class="card-title">{{event.start_time|date:'g:i a'|upper}} - {{event.end_time|date:'g:i a'|upper}}</h3>
                             <p class="card-text"><span class="text-dark"> {{ event.tagline }} </span> </p>
                             <p class="card-text"><span class="text-dark"> </span> </p>
                         </div>
