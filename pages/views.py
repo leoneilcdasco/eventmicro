@@ -120,7 +120,7 @@ def schools(request):
     context = {}
 
     #TODO count access log
-    schools = School.objects.filter(extra=0).all()
+    schools = School.objects.filter(extra=0).all().order_by('id')
 
     context = { 'schools' : schools }
     return render(request, 'schools.html', context)
