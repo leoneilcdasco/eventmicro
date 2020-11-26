@@ -140,6 +140,7 @@
             (The Q&A session will be held after the info Session via a Zoom chat. You will receive a link to the Q&A session via email. You may select more than one diploma.)
         </div>        
     </div>
+    {% endif %}
 
     <div class="form-group row">
         <label for="example-tel-input" class="col-md-3 col-form-label">Pre-event Questions for Panel Q&A:</label>
@@ -147,6 +148,5 @@
             <textarea class="form-control" rows="5" name="inquiry" value="{{ values.inquiry }}">{{ values.inquiry }}</textarea>
         </div>
     </div>
-    {% endif %}
-
+   
 </form>
