@@ -51,11 +51,10 @@ If you have trouble entering the Info Session using the link, the Info Session w
 <br>
 You have also selected to attend a Q&A breakout session for the following SP course/specialisation:
 <br>
-
+<br>
 {% for invitation in course_invites %}
 {% if invitation.is_selected %}
 <b>{{ invitation.name }}</b> : 
-<br>
 <br>
 {{ invitation.link }}
 <br>
@@ -73,7 +72,6 @@ We have also included the other Q&A breakout sessions offered by the school in t
 {% for invitation in course_invites %}
 {% if not invitation.is_selected %}
 <b>{{ invitation.name }}</b> :
-<br>
 <br>
 {{ invitation.link }}
 <br>
