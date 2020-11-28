@@ -15,24 +15,24 @@
 <pre style="font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
 Hi {{ invite.name }},
 
-Thank you for registering for Singapore Polytechnic (SP) Open House’s Live Info Session. 
+Thank you for registering for Singapore Polytechnic (SP) Open House’s {{ invitation.link2 }}. 
 
 You have selected to attend the info session for {{ invite.school }} on <b>{{ invite.date|date:'M d, Y'|upper}}</b> at <b>{{ invite.s_time }} ~ {{ invite.e_time }}</b>.
 
-Below is the link to the Live Info Session. Click on the link at the given date and time.
+Below is the link to the {{ invitation.link2 }}. Click on the link at the given date and time.
 
 {{ invite.link1 }}    
 
 To add this session to your calendar, download the .ics file and import it into your calendar of choice. 
 
-If you have trouble entering the Info Session using the link, the Info Session will also be livestreamed on our Open House microsite (openhouse.sp.edu.sg) at the given date and time.
-
 </pre>
 
 {% if course_invites %}
+    If you have trouble entering the Info Session using the link, the Info Session will also be livestreamed on our Open House microsite (openhouse.sp.edu.sg) at the given date and time.
+    <br>
+    <br>
     <b>Q&A Breakout Session </b>
-
-    You have also selected to attend a Q&A breakout session for the following SP course : {{ invite.session_type }}
+    You have also selected to attend a Q&A breakout session for the following SP course/specialisation:
     <br>
     <br>
 
@@ -48,7 +48,10 @@ If you have trouble entering the Info Session using the link, the Info Session w
     {% endfor %}
 
     <br>
-    Here are other Q&A breakout sessions for other diplomas that you may be interested in;
+    The Q&A breakout session will commence after each Live Info Session. Please make sure that you have signed up for a Zoom account before the session.
+    <br>
+    <br>
+    We have also included the other Q&A breakout sessions offered by the school in the event that you have questions regarding these courses during Open House 2021:
     <br>
     <br>
 

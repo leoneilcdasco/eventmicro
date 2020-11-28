@@ -10,7 +10,7 @@ from django.template.loader import render_to_string
 
 from email.mime.text import MIMEText
 
-SUBJECT_DEFAULT = 'Link to Singapore Polytechnic Open House - Info Session'
+SUBJECT_DEFAULT = 'Singapore Polytechnic Open House 2021 - Info Session'
 
 # -----------------------------------------------------------------------------
 # Check blank string data
