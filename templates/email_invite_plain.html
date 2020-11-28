@@ -15,20 +15,27 @@
 <pre style="font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
 Hi {{ invite.name }},
 
-Thank you for registering for Singapore Polytechnic (SP) Open House’s {{ invite.link2 }}. 
-
 {% if course_invites %}
-    You have selected to attend the info session for {{ invite.school }} on <b>{{ invite.date|date:'M d, Y'|upper}}</b> at <b>{{ invite.s_time }} ~ {{ invite.e_time }}</b>.
+Thank you for registering for Singapore Polytechnic (SP) Open House’s Live Info Session. 
 {% else %}
-    You have selected to attend the {{ invite.school }} on <b>{{ invite.date|date:'M d, Y'|upper}}</b> at <b>{{ invite.s_time }} ~ {{ invite.e_time }}</b>.
+Thank you for registering for Singapore Polytechnic (SP) Open House’s {{ invite.school }}. 
 {% endif %}
 
-Below is the link to the {{ invite.link2 }}. Click on the link at the given date and time.
+{% if course_invites %}
+You have selected to attend the info session for {{ invite.school }} on <b>{{ invite.date|date:'M d, Y'|upper}}</b> at <b>{{ invite.s_time }} ~ {{ invite.e_time }}</b>.
+{% else %}
+You have selected to attend the {{ invite.school }} on <b>{{ invite.date|date:'M d, Y'|upper}}</b> at <b>{{ invite.s_time }} ~ {{ invite.e_time }}</b>.
+{% endif %}
+
+{% if course_invites %}
+Below is the link to the Live Info Session. Click on the link at the given date and time.
+{% else %}
+Below is the link to the {{ invite.school }}. Click on the link at the given date and time.
+{% endif %}
 
 {{ invite.link1 }}    
 
 To add this session to your calendar, download the .ics file and import it into your calendar of choice. 
-
 </pre>
 
 {% if course_invites %}
@@ -36,6 +43,7 @@ To add this session to your calendar, download the .ics file and import it into 
     <br>
     <br>
     <b>Q&A Breakout Session </b>
+    <br>
     You have also selected to attend a Q&A breakout session for the following SP course/specialisation:
     <br>
     <br>
