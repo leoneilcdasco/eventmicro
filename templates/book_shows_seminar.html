@@ -145,17 +145,17 @@
             <div class="row">
               <div class="col-md-12">
                 <h2>
-                  Welcome to <span class="text-danger">SP Open House's</span> <span class="text-warning"><u>POLY FOUNDATION PROGRAMME (PFP) Seminar, ENGINEERING SHOW and The MAD MAD SHOW Registration</u></span> page.
+                    Welcome to <span class="text-danger">SP Open House's</span> <span class="text-warning">POLY FOUNDATION PROGRAMME (PFP) Seminar, ENGINEERING SHOW and The MAD MAD SHOW Registration</span> page.
                 </h2>
                 <p>
-                  Register for the show or seminar that interest you by selecting from the list below.
+                    Register for the show or seminar that interest you by selecting from the list below.
                 </p>
               </div>
             </div>
 
            {% for session in event_list %}
             <hr>
-            <h3 class="text-danger">{{ session.day }}</h3>
+            <h2 class="text-danger">{{ session.day }}</h2>
             <!-- ROW Cards -->
             <div class="row">
                 {% for event in session.events%}
@@ -172,7 +172,7 @@
                             </div>
                         </div>
                         <div class="card-body bg-light">
-                            <h3 class="card-title">{{event.start_time|date:'g:i a'|upper}} - {{event.end_time|date:'g:i a'|upper}}</h3>
+                            <h3 class="card-title">{{event.start_time|date:'g:i A'|upper}} - {{event.end_time|date:'g:i A'|upper}}</h3>
                             <p class="card-text"><span class="text-dark"> {{ event.tagline }} </span> </p>
                             <p class="card-text"><span class="text-dark"> </span> </p>
                         </div>

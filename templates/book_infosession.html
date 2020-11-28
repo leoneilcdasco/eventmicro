@@ -145,7 +145,7 @@
             <div class="row">
               <div class="col-md-12">
                 <h2>
-                    Welcome to <span class="text-danger">SP Open House's</span> <span class="text-warning"><u>Info Session Registration</u></span> page.
+                    Welcome to <span class="text-danger">SP Open House's</span> <span class="text-warning">Info Session Registration</span> page.
                 </h2>
                 <p>
                     Register for an Info Session of interest to you by selecting the relevant SP academic school.
@@ -155,7 +155,7 @@
 
            {% for session in event_list %}
             <hr>
-            <h3 class="text-danger">{{ session.day }}</h3>
+            <h2 class="text-danger" >{{ session.day }}</h2>
             <!-- ROW Cards -->
             <div class="row">
                 {% for event in session.events%}
@@ -164,7 +164,7 @@
                         <div class="card-header bg-dark">
                             <div class="d-flex no-block align-items-center">
                                 <div>
-                                    <h3 class="mb-0 text-white">{{event.name}}</h3>
+                                    <h3 class="mb-0 text-white">{{event.name}} </h3>
                                 </div>
                                 <div class="ml-auto">
                                     <span class="display-7"><i class="ti-headphone-alt"></i></span>
@@ -172,7 +172,7 @@
                             </div>
                         </div>
                         <div class="card-body bg-light">
-                            <h3 class="card-title">{{event.start_time|date:'g:i a'|upper}} - {{event.end_time|date:'g:i a'|upper}}</h3>
+                            <h3 class="card-title">{{event.start_time|date:'g:i A'|upper}} to {{event.end_time|date:'g:i A'|upper}}</h3>
                             <p class="card-text"><span class="text-dark"> {{ event.tagline }} </span> </p>
                             <p class="card-text"><span class="text-dark"> </span> </p>
                         </div>

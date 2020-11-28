@@ -5,7 +5,7 @@
     <div class="form-group mt-4 row">
         <label for="example-text-input" class="col-md-3 col-form-label">First name:</label>
         <div class="col-md-9">
-            <input class="form-control {% if err_fno == 2 %} is-invalid {% endif %}" placeholder="First name of prospective student" type="text" name="first_name" value="{{ values.first_name }}" id="first_name_id">
+            <input class="form-control {% if err_fno == 2 %} is-invalid {% endif %}" placeholder="First name" type="text" name="first_name" value="{{ values.first_name }}" id="first_name_id">
             <div class="invalid-feedback">
                 Please provide prospective student's first name.
             </div>
@@ -14,7 +14,7 @@
     <div class="form-group mt-4 row">
         <label for="example-text-input" class="col-md-3 col-form-label">Last name:</label>
         <div class="col-md-9">
-            <input class="form-control {% if err_fno == 3 %} is-invalid {% endif %}" placeholder="Last name of prospective student" type="text" name="last_name" value="{{ values.last_name }}">
+            <input class="form-control {% if err_fno == 3 %} is-invalid {% endif %}" placeholder="Last name" type="text" name="last_name" value="{{ values.last_name }}">
             <div class="invalid-feedback">
                 Please provide prospective student's last name.
             </div>
@@ -120,7 +120,7 @@
 
     {% if courses %}
     <div class="form-group row">
-        <label for="example-tel-input" class="col-md-3 col-form-label">Would you like to attend a Q&A session for one of the following diplomas?</label>
+        <label for="example-tel-input" class="col-md-3 col-form-label">Would you like to attend a Q&A session for one of the following courses/specialisations? If yes, please select one (1) course/specialisation.</label>
         <div class="col-md-9">
             {% for course in courses %}
             <div>
@@ -135,15 +135,15 @@
         </div>
 
         <div class="col-md-3"></div>
-        <div class="col-md-9 text-warning">
+        <div class="col-md-9">
             <hr/>
-            (The Q&A session will be held after the info Session via a Zoom chat. You will receive a link to the Q&A session via email. You may select more than one diploma.)
+            (The Q&A breakout session will be held after the info Session via a Zoom session chat. You will receive a link to the Q&A session via email.)
         </div>        
     </div>
     {% endif %}
 
     <div class="form-group row">
-        <label for="example-tel-input" class="col-md-3 col-form-label">Pre-event Questions for Panel Q&A:</label>
+        <label for="example-tel-input" class="col-md-3 col-form-label">Pre-event Questions for Panel Q&A during Info Session:</label>
         <div class="col-md-9">
             <textarea class="form-control" rows="5" name="inquiry" value="{{ values.inquiry }}">{{ values.inquiry }}</textarea>
         </div>
