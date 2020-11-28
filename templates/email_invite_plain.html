@@ -12,67 +12,85 @@
 <div style="padding: 10px 0 30px 0;font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
 {% autoescape off %}
 
-<pre style="font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
 Hi {{ invite.name }},
-
+<br>
+<br>
 {% if course_invites %}
 Thank you for registering for Singapore Polytechnic (SP) Open House’s Live Info Session. 
 {% else %}
 Thank you for registering for Singapore Polytechnic (SP) Open House’s {{ invite.school }}. 
 {% endif %}
+<br>
+<br>
 {% if course_invites %}
 You have selected to attend the info session for {{ invite.school }} on <b>{{ invite.date|date:'M d, Y'|upper}}</b> at <b>{{ invite.s_time }} ~ {{ invite.e_time }}</b>.
 {% else %}
 You have selected to attend the {{ invite.school }} on <b>{{ invite.date|date:'M d, Y'|upper}}</b> at <b>{{ invite.s_time }} ~ {{ invite.e_time }}</b>.
 {% endif %}
+<br>
+<br>
 {% if course_invites %}
 Below is the link to the Live Info Session. Click on the link at the given date and time.
 {% else %}
 Below is the link to the {{ invite.school }}. Click on the link at the given date and time.
 {% endif %}
-</pre>
+<br>
+<br>
 {{ invite.link1 }}    
-
-<pre style="font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+<br>
+<br>
 To add this session to your calendar, download the .ics file and import it into your calendar of choice. 
-
+<br>
+<br>
 {% if course_invites %}
 If you have trouble entering the Info Session using the link, the Info Session will also be livestreamed on our Open House microsite (openhouse.sp.edu.sg) at the given date and time.
-
+<br>
+<br>
 <b>Q&A Breakout Session </b>
-
+<br>
+<br>
 You have also selected to attend a Q&A breakout session for the following SP course/specialisation:
-</pre>
+<br>
 
 {% for invitation in course_invites %}
 {% if invitation.is_selected %}
 <b>{{ invitation.name }}</b> : 
+<br>
+<br>
 {{ invitation.link }}
+<br>
 {% else %} 
 {% endif %}
 {% endfor %}
 
-<pre style="font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+<br>
 The Q&A breakout session will commence after each Live Info Session. Please make sure that you have signed up for a Zoom account before the session.
-
+<br>
+<br>
 We have also included the other Q&A breakout sessions offered by the school in the event that you have questions regarding these courses during Open House 2021:
-</pre>
+<br>
+<br>
 {% for invitation in course_invites %}
 {% if not invitation.is_selected %}
 <b>{{ invitation.name }}</b> :
+<br>
+<br>
 {{ invitation.link }}
+<br>
+<br>
 {% endif %}
 {% endfor %}
 {% endif %}
 
-<pre style="font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;"></pre>
 If you have any queries regarding SP Open House 2021, please email us at schoolrelations@sp.edu.sg. 
-
+<br>
+<br>
 For enquiries regarding our academic schools, please email contactus@sp.edu.sg.
-
+<br>
+<br>
 Thank you and we look forward to you joining us at SP Open House 2021.
+<br>
 
-</pre>
 
 <hr>
 SP Open House 2021 Organising Committee
