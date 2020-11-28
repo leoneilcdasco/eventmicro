@@ -30,8 +30,9 @@ Below is the link to the Live Info Session. Click on the link at the given date 
 {% else %}
 Below is the link to the {{ invite.school }}. Click on the link at the given date and time.
 {% endif %}
-{{ invite.link1 }}    
 </pre>
+{{ invite.link1 }}    
+
 <pre style="font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
 To add this session to your calendar, download the .ics file and import it into your calendar of choice. 
 
@@ -41,6 +42,8 @@ If you have trouble entering the Info Session using the link, the Info Session w
 <b>Q&A Breakout Session </b>
 
 You have also selected to attend a Q&A breakout session for the following SP course/specialisation:
+</pre>
+
 {% for invitation in course_invites %}
 {% if invitation.is_selected %}
 <b>{{ invitation.name }}</b> : 
@@ -49,10 +52,11 @@ You have also selected to attend a Q&A breakout session for the following SP cou
 {% endif %}
 {% endfor %}
 
+<pre style="font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
 The Q&A breakout session will commence after each Live Info Session. Please make sure that you have signed up for a Zoom account before the session.
 
 We have also included the other Q&A breakout sessions offered by the school in the event that you have questions regarding these courses during Open House 2021:
-
+</pre>
 {% for invitation in course_invites %}
 {% if not invitation.is_selected %}
 <b>{{ invitation.name }}</b> :
@@ -61,6 +65,7 @@ We have also included the other Q&A breakout sessions offered by the school in t
 {% endfor %}
 {% endif %}
 
+<pre style="font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;"></pre>
 If you have any queries regarding SP Open House 2021, please email us at schoolrelations@sp.edu.sg. 
 
 For enquiries regarding our academic schools, please email contactus@sp.edu.sg.
