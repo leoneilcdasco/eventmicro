@@ -80,8 +80,11 @@
                     <!-- Card -->
                     <div class="card border-0">
                         <div class="card-body">
+                          {% if school.email == "NONE" %}
+                          <h3 class="card-title">To register for a one-on-one chat regarding <span class="text-warning"><u>{{ school }}</u></span>, pick a timeslot that you are available for.</h3>
+                          {% else %}
                           <h3 class="card-title">To register for a one-on-one chat with a <span class="text-warning"><u>{{ school }}</u></span> Course Counsellor, pick a timeslot that you are available for.</h3>
-                          <!-- <p class="card-text"> Select time xxx xxx xxx...</p> -->
+                          {% endif %}
                         </div>
                         <img class="card-img-top img-fluid" src="/media/{{ school.photo }}" alt="Card image cap">
                     </div>
