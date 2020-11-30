@@ -263,7 +263,7 @@ def register(request):
                             'calendar'   : event.calendar_time(),
                             'name'       : str(participant.first_name + ' ' + participant.last_name), 
                             'subject'    : event.invitation,
-                            'tagline'    : event.tagline,
+                            'tagline'    : event.name,
                             'details'    : event.details,
                             'photo'      : event.photo,
                             'email'      : participant.email,
