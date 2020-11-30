@@ -101,7 +101,7 @@ def create_ics_reminder(invite):
     vevent.add('dtstart').value     = invite['calendar']['start']
     vevent.add('dtend').value       = invite['calendar']['end']
     vevent.add('summary').value     = invite['tagline']
-    vevent.add('organizer').value   = 'info-session@sp.edu.sg'
+    vevent.add('organizer').value   = 'schoolrelations@sp.edu.sg'
     vevent.add('description').value = invite['details']
     vevent.add('uid').value         = str(uuid.uuid4())
     vevent.add('dtstamp').value     = datetime.now()
