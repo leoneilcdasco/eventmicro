@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -75,8 +77,12 @@ def attendees(request, __id__=0):
         active_school = 'All Schools'
     else:
         active_school = School.objects.filter(id=__id__).first()
-        
+
+    dataset = userlist(__id__)
+
     context['active_school'] = active_school
-    context['userlist'] = userlist(__id__)
+    context['userlist']      = dataset['datatable']
+    context['dailycount']    = dataset['daytotal']
 
     return render(request, 'attendees.html', context)
+    #return render(request, 'datatable.html', context)

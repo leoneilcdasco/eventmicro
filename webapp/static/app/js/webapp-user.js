@@ -4,11 +4,9 @@ $(function () {
     // Registration Chart
     // ============================================================== 
     var chart2 = new Chartist.Bar('.amp-pxl', {
-
           labels: x_series,
           series: [
-                    y1_series,
-                    y2_series
+                    y1_series
                 ] 
         }, {
           axisX: {
@@ -20,7 +18,6 @@ $(function () {
             // On the y-axis start means left and end means right
             position: 'start'
           },
-        high:'12',
         low: '0',
         plugins: [
             Chartist.plugins.tooltip()
