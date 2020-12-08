@@ -6,7 +6,7 @@ from django.db.models.functions import TruncHour, TruncMonth
 from pages.models import *
 
 # School IDs to be excluded from the chart
-NON_SCHOOL_IDS = [10, 11, 12]
+NON_SCHOOL_IDS = [12, 13]
 
 # Fixed dates of events
 EVENT_DATES = [ datetime(2021, 1, 7), datetime(2021, 1, 8), datetime(2021, 1, 9) ]
