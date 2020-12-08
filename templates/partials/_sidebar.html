@@ -15,11 +15,13 @@
                         <span class="hide-menu">&nbsp; All Schools </span></a>
                 </li>
                 {% for school in schools %}
-                <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" title="{{ school }}"
-                        href="{% url 'attendees' school.id %}" aria-expanded="false"><i class="mdi mdi-school"></i>
-                        <span class="hide-menu">&nbsp; {{ school }} </span></a>
-                </li>
+                    {% if school.email != "NONE" %}
+                        <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" title="{{ school }}"
+                         href="{% url 'attendees' school.id %}" aria-expanded="false"><i class="mdi mdi-school"></i>
+                            <span class="hide-menu">&nbsp; {{ school }} </span></a>
+                        </li>
+                    {% endif %}
                 {% endfor %}
             </ul>
         </nav>
