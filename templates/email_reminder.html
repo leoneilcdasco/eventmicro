@@ -1,0 +1,110 @@
+{% load static %}
+
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Singapore Polytechnic Webinar</title>
+    <script src="{{ domain }}/static/icons/font-awesome/fa-fonts.js"></script>
+</head>
+
+<body style="margin: 0; padding: 0;">
+
+    <div style="padding: 10px 0 30px 0;font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+        {% autoescape off %}
+
+        Hello again!,
+        <br>
+        <br>
+        We are less than a week away from SPOH 2021 where we will be welcoming you (and your family) virtually, to our institution.
+        <br>
+        Please do remember to join our live shows that you have registered by clicking on the livestream links sent! We are sending you again the event details and links below:
+        <br>
+        <br>
+        {% if course_invites %}
+        You have registered to attend the info session for {{ invite.school }} on <b>{{ invite.date|date:'M d,Y'|upper}}</b> at <b>{{ invite.s_time }} ~ {{ invite.e_time }}</b>.
+        {% else %}
+        You have registered to attend the {{ invite.school }} on <b>{{ invite.date|date:'M d, Y'|upper}}</b> at <b>{{ invite.s_time }} ~ {{ invite.e_time }}</b>.
+        {% endif %}
+        <br>
+        <br>
+        {% if course_invites %}
+        Below is the link to the Live Info Session. Click on the link at the given date and time.
+        {% else %}
+        Below is the link to the {{ invite.school }}. Click on the link at the given date and time.
+        {% endif %}
+        <br>
+        <br>
+        {{ invite.link1 }}
+        <br>
+        <br>
+        {% if course_invites %}
+        If you have trouble entering the Info Session using the link, the Info Session will also be livestreamed on our
+        Open House microsite (openhouse.sp.edu.sg) at the given date and time.
+        <br>
+        <br>
+        <b>Q&A Breakout Session </b>
+        <br>
+        <br>
+        You have also selected to attend a Q&A breakout session for the following SP course/specialisation:
+        <br>
+        <br>
+        {% for invitation in course_invites %}
+        {% if invitation.is_selected %}
+        <b>{{ invitation.name }}</b> :
+        <br>
+        {{ invitation.link }}
+        <br>
+        {% else %}
+        {% endif %}
+        {% endfor %}
+
+        <br>
+        The Q&A breakout session will commence after each Live Info Session. Please make sure that you have signed up
+        for a Zoom account before the session.
+        <br>
+        <br>
+        We have also included the other Q&A breakout sessions offered by the school in the event that you have questions
+        regarding these courses during Open House 2021:
+        <br>
+        <br>
+        {% for invitation in course_invites %}
+        {% if not invitation.is_selected %}
+        <b>{{ invitation.name }}</b> :
+        <br>
+        {{ invitation.link }}
+        <br>
+        <br>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+
+        There are also several other livestream shows across the different schools! You can still register for them at our main page:
+        <br>
+        <br>
+        <a href="https://openhouse.sp.edu.sg/">SPHO MAIN PAGE LINK</a>
+        <br>
+        <br>
+        We look forward to having you with us.
+        <br>
+
+
+        <hr>
+        SP Open House 2021 Organising Committee
+        <br>
+        <a href="https://www.sp.edu.sg">https://www.sp.edu.sg</a>
+        | <img src="{{ domain }}//media/web-defaults/facebook-icon_16x16.png" alt="Facebook Icon" /><a
+            href="https://www.facebook.com/singaporepolytechnic">&nbsp;<b>SingaporePolytechnic</b></a>
+        | <img src="{{ domain }}//media/web-defaults/twitter-icon_16x16.png" alt="Twitter Icon" /><a
+            href="https://twitter.com/SingaporePoly">&nbsp;<b>@singaporepoly</b></a>
+        | <img src="{{ domain }}/media/web-defaults/instagram-icon_16x16.png" alt="Instagram Icon" /><a
+            href="https://www.instagram.com/singaporepoly">&nbsp;<b>@singaporepoly</b></a>
+        {% endautoescape %}
+    </div>
+
+
+</body>
+
+</html>

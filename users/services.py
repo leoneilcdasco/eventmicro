@@ -1,15 +1,36 @@
-from datetime import datetime
 
+import uuid
+import vobject
+
+from datetime import datetime, timedelta 
+from email.mime.text import MIMEText
+
+from django.conf import settings
 from django.db.models import Count, Sum
 from django.db.models.functions import TruncHour, TruncMonth
+from django.core.mail import EmailMultiAlternatives
+from django.contrib.sites.models import Site
+from django.template.loader import render_to_string
 
 from pages.models import *
+
+# Default email subject
+SUBJECT_DEFAULT = 'Singapore Polytechnic Open House 2021'
+
+# Test email recipient
+TEST_EMAIL = 'leoneil@mybuildtec.biz'
 
 # School IDs to be excluded from the chart
 NON_SCHOOL_IDS = [12, 13]
 
 # Fixed dates of events
 EVENT_DATES = [ datetime(2021, 1, 7), datetime(2021, 1, 8), datetime(2021, 1, 9) ]
+
+# -----------------------------------------------------------------------------
+# Check blank string data
+# -----------------------------------------------------------------------------
+def isBlank (data):
+    return not (data and data.strip())
 
 # -----------------------------------------------------------------------------
 # Retrieve data for plotting to chart dashboard
@@ -163,6 +184,7 @@ def schoolusers(school_id):
                 datarow['participant'] = participant
                 datarow['email']       = participant.email
                 datarow['question']    = participant.question
+                datarow['event_obj']   = event
                 
                 if cp:
                     datarow['course'] = cp.course.name
@@ -196,3 +218,32 @@ def dailytotal(school_id):
                     daytotal['day3'] += 1
 
     return daytotal
+
+# -----------------------------------------------------------------------------
+# Sends email webinar reminder
+# -----------------------------------------------------------------------------
+def send_email_reminder(invite):
+    print('DEBUG>>> send_email_reminder(): sending email reminder')
+
+    if settings.DEBUG:
+        recipient_email = TEST_EMAIL
+    else:
+        recipient_email = invite['email']
+
+    # Site domain setting
+    domain = 'https://' + str(Site.objects.get_current())
+    context= { 'domain' : domain, 'invite' : invite, 'course_invites' : invite['course_invites'] }
+ 
+    # Set email parameters
+    #subject    = SUBJECT_DEFAULT if isBlank(invite['subject']) else invite['subject']
+    from_email = 'sp-webinar@spoh21registration.com'
+    to_email   = [ recipient_email ]
+
+    text_content = invite['details']
+    html_content = render_to_string('email_reminder.html', context)
+
+    msg = EmailMultiAlternatives(SUBJECT_DEFAULT, text_content, from_email, to_email )
+    msg.attach_alternative(html_content, "text/html")
+
+    # Send SMTP outbound email to participant
+    msg.send() 

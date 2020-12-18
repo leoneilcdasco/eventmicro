@@ -105,6 +105,7 @@ class Participant(models.Model):
 
     is_paid           = models.BooleanField(default=False)
     registration_date = models.DateTimeField(default=datetime.now)
+    reminder_on       = models.DateField(default=datetime.now)
     
     def __str__(self):
         return self.first_name + ' ' + self.last_name
