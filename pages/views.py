@@ -113,6 +113,39 @@ def booking4(request):
     return render(request, 'book_shows_seminar.html', context)
 
 # -----------------------------------------------------------------------------
+# Render booking for guidance counselor
+# -----------------------------------------------------------------------------
+def booking5(request):
+    print('DEBUG>>> booking5(): rendering page for guidance counselor')
+    context = {}
+
+    #TODO count access log
+
+    return render(request, 'book_admission_counselor.html', context)
+
+# -----------------------------------------------------------------------------
+# Render booking for guidance counselor
+# -----------------------------------------------------------------------------
+def booking6(request):
+    print('DEBUG>>> booking6(): rendering page for guidance counselor')
+    context = {}
+
+    #TODO count access log
+
+    return render(request, 'book_pfp_counselor.html', context)
+
+# -----------------------------------------------------------------------------
+# Render booking for guidance counselor
+# -----------------------------------------------------------------------------
+def booking7(request):
+    print('DEBUG>>> booking7(): rendering page for guidance counselor')
+    context = {}
+
+    #TODO count access log
+
+    return render(request, 'book_pfp_counselor.html', context)
+
+# -----------------------------------------------------------------------------
 # Render schools for course counselor selection
 # -----------------------------------------------------------------------------
 def schools(request):
