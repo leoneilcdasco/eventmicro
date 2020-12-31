@@ -48,6 +48,7 @@ class School(models.Model):
     phone  = models.CharField(max_length=250, blank=True)
     extra  = models.IntegerField(choices=EXTRA_CHOICES, default=0)
     appointment = models.TextField(blank=True)
+    courses = models.TextField(blank=True)
     def __str__(self):
         return self.name
 

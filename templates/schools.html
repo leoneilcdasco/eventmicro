@@ -147,12 +147,14 @@
                           </div>
                       </div>
                       <div class="card-body bg-light">
-                          <p class="card-text"><span class="text-dark"> {{ school.phone }} </span> </p>
+                        <h3 class="card-title"> 10:00 AM to 4:00 PM </h3>
+                        {% autoescape off %}
+                        {{ school.courses }}
+                        {% endautoescape %} 
+                          
                           <p class="card-text"><span class="text-dark"> </span> </p>
                       </div>
                       <div class="bg-light">
-                          <!-- <button class="btn btn-danger waves-effect waves-light webinar_btn" data-toggle="modal" data-event-id="{{ event.id }}"
-                          data-target="#reg-dialog">REGISTER</button>  -->
                           <a href="{% url 'booking3' school.id %}" class="btn btn-danger waves-effect waves-light mt-1 webinar_btn">BOOKING</a>
                       </div>
                   </div>
